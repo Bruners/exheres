@@ -5,7 +5,7 @@ SUMMARY="Open Sound System"
 HOMEPAGE="http://www.opensound.com/oss.html"
 
 SCM_REPOSITORY="http://opensound.hg.sourceforge.net/hgweb/opensound/opensound/"
-require scm-hg systemd-service [ systemd_files=[ oss.service] ]
+require scm-hg systemd-service [ systemd_files=[ oss.service ] ]
 
 SLOT="0"
 PLATFORM="

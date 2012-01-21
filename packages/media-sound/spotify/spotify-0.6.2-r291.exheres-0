@@ -8,8 +8,8 @@ independent record labels, including Sony, EMI, Warner Music Group, and Universa
 "
 HOMEPAGE="http://www.spotify.com"
 DOWNLOADS="
-platform:amd64? ( http://repository.spotify.com/pool/non-free/s/spotify/spotify-client-qt_0.6.2.291.gcccc1f5.116-1_amd64.deb )
-platform:x86? ( http://repository.spotify.com/pool/non-free/s/spotify/spotify-client-qt_0.6.2.291.gcccc1f5.116-1_i386.deb )
+    platform:amd64? ( http://repository.spotify.com/pool/non-free/s/spotify/spotify-client-qt_0.6.2.291.gcccc1f5.116-1_amd64.deb )
+    platform:x86? ( http://repository.spotify.com/pool/non-free/s/spotify/spotify-client-qt_0.6.2.291.gcccc1f5.116-1_i386.deb )
 "
 LICENCES="spotify"
 RESTRICT="strip"
@@ -25,6 +25,11 @@ DEPENDENCIES="
     sys-apps/usbutils
     sys-sound/alsa-lib
     x11-libs/qt:4[dbus][webkit][X(+)]
+"
+
+MYOPTIONS="platform:
+    amd64
+    x86
 "
 
 BUGS_TO="alm.anma@gmail.com"

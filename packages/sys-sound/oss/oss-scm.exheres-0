@@ -4,7 +4,7 @@
 SUMMARY="Open Sound System"
 HOMEPAGE="http://www.opensound.com/oss.html"
 
-SCM_REPOSITORY="http://mercurial.opensound.com"
+SCM_REPOSITORY="http://opensound.hg.sourceforge.net/hgweb/opensound/opensound/"
 require scm-hg
 
 SLOT="0"

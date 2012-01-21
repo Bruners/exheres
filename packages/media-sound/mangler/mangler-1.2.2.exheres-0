@@ -1,0 +1,93 @@
+# Copyright 2012 Lasse Brun <bruners@gmail.com>
+# Distributed under the terms of the GNU General Public License v2
+
+
+SLOT="0"
+DOWNLOADS="http://www.mangler.org/downloads/${PNV}.tar.bz2"
+HOMEPAGE="http://www.mangler.org"
+LICENCES="
+    GPL-3
+    LGPL-2.1
+    zlib
+"
+SUMMARY="An open source VOIP client capable of connectig to Ventrilo 3.x servers"
+DESCRIPTION="Provides all standard functions found in the Windows client"
+PLATFORMS="
+    amd64
+    x86
+"
+DEPENDENCIES="
+    build:
+        dev-util/pkg-config
+        gnome-bindings/gtkmm:2.4
+        gnome-desktop/librsvg:2
+        x11-libs/libX11
+        x11-libs/libXi
+        x11-libs/gtk+:2[>=2.16]
+        celt? ( media-libs/celt:*[>=0.7] )
+        dbus? ( dev-libs/dbus-glib:1[>=0.80] )
+        espeak? ( app-speech/espeak )
+        g15? ( app-misc/g15daemon )
+        gsm? ( media-libs/gsm:*[=1.0.13] )
+        speex? ( media-libs/speex[=1.2-rc1] )
+        xosd? ( x11-libs/xosd )
+        mp3? ( media-sound/mpg123 )
+    suggestion:
+        media-sound/pulseaudio
+        sys-sound/alsa-lib
+        sys-sound/oss
+"
+
+MYOPTIONS="
+    (celt) [[ description = [ Enabled mangler to use CELT on patched servers  ] ]]
+    dbus [[ description = [ Enables the now-playing feature for media players ] ]]
+    (espeak) [[ description = [ Enable text-to-speech for mangler  ] ]]
+    (g15) [[ description = [ Show information on Logitech G15 keyboards  ] ]]
+    (gsm) [[ description = [ Enable support for the GSM 6.10 audio codec ] ]]
+    speex
+    (xosd)
+    (jukebox) [[ description = [ Builds mangler-jukebox, needs mpg123 to stream. NOT SUPPORTED BY
+    UPSTREAM ] ]]
+    (mp3)
+
+    jukebox [[ requires = mp3 ]]
+"
+
+BUGS_TO="bruners@gmail.com"
+
+DEFAULT_SRC_CONFIGURE_OPTION_ENABLES=(
+    celt
+    dbus
+    espeak
+    g15
+    gsm
+    speex
+    xosd
+)
+
+DEFAULT_SRC_CONFIGURE_PARAMS=(
+    --with-alsa
+    --with-pulseaudio
+    --with-oss
+    --without-gnu-ld
+)
+
+src_compile() {
+    cd "${WORKBASE}/${PNV}/"
+    make DESTDIR="${IMAGE}" install || die "build failed"
+    if option jukebox; then
+        ewarn "WARNING: You are enabling the jukebox, note that this feature is not supported by
+        upstream and should not be used"
+    fi
+}
+
+src_install() {
+    default
+    if option jukebox; then
+        ewarn "WARNING: You are enabling the jukebox, note that this feature is not supported by
+        upstream and should not be used"
+        cd "${WORKBASE}/${PNV}/jukebox"
+        make DESTDIR="${IMAGE}" all || die "build failed"
+        cp mangler-jukebox "${IMAGE}/usr/bin"
+    fi
+}

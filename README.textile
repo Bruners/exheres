@@ -4,3 +4,5 @@ Packages that should be in this repository
 ** mangler
 ** spotify
 ** mumble
+*sys-sound
+**oss

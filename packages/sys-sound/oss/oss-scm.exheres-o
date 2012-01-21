@@ -8,7 +8,7 @@ SCM_REPOSITORY="http://mercurial.opensound.com"
 require scm-hg
 
 SLOT="0"
-PLATFORM="~x86"
+PLATFORM="~x86 ~amd64"
 MYOPTIONS=""
 
 DEPENDENCIES="

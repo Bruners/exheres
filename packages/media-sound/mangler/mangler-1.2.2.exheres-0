@@ -39,16 +39,16 @@ DEPENDENCIES="
 "
 
 MYOPTIONS="
-    (celt) [[ description = [ Enabled mangler to use CELT on patched servers  ] ]]
+    celt [[ description = [ Enabled mangler to use CELT on patched servers  ] ]]
     dbus [[ description = [ Enables the now-playing feature for media players ] ]]
-    (espeak) [[ description = [ Enable text-to-speech for mangler  ] ]]
-    (g15) [[ description = [ Show information on Logitech G15 keyboards  ] ]]
-    (gsm) [[ description = [ Enable support for the GSM 6.10 audio codec ] ]]
+    espeak [[ description = [ Enable text-to-speech for mangler  ] ]]
+    g15 [[ description = [ Show information on Logitech G15 keyboards  ] ]]
+    gsm [[ description = [ Enable support for the GSM 6.10 audio codec ] ]]
     speex
-    (xosd)
-    (jukebox) [[ description = [ Builds mangler-jukebox, needs mpg123 to stream. NOT SUPPORTED BY
+    xosd
+    jukebox [[ description = [ Builds mangler-jukebox, needs mpg123 to stream. NOT SUPPORTED BY
     UPSTREAM ] ]]
-    (mp3)
+    mp3
 
     jukebox [[ requires = mp3 ]]
 "

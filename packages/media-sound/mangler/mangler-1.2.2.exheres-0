@@ -34,21 +34,24 @@ DEPENDENCIES="
         speex? ( media-libs/speex[=1.2-rc1] )
         xosd? ( x11-libs/xosd )
     suggestion:
-        gnome-desktop/rhythmbox [[ description = [ mangler is capable of showing now-playing info from rhytmbox ] ]]
-        media-sound/amarok [[ description = [ mangler is capable of showing now-playing info from amarok ] ]]
-        media-sound/mpd [[ description = [ mangler is capable of showing now-playing info from mpd ] ]]
-        media-sound/pulseaudio [[ description = [ Enables mangler to use pulseaudio for input/output audio ] ]]
-        sys-sound/alsa-lib [[ description = [ Enables mangler to use ALSA for input/output audio ] ]]
-        sys-sound/oss [[ description = [ Enables mangler to use OSSv4 for input/output audio ] ]]
+        gnome-desktop/rhythmbox [[ description = [ Mangler is capable of showing now-playing info from Rhytmbox ] ]]
+        media-sound/amarok [[ description = [ Mangler is capable of showing now-playing info from Amarok ] ]]
+        media-sound/mpd [[ description = [ Mangler is capable of showing now-playing info from MPD ] ]]
+        media-sound/pulseaudio [[ description = [ Enables Mangler to use Pulseaudio for input/output audio ] ]]
+        sys-sound/alsa-lib [[ description = [ Enables Mangler to use ALSA for input/output audio ] ]]
+        sys-sound/oss [[ description = [ Enables Mangler to use OSSv4 for input/output audio ] ]]
 "
 
 MYOPTIONS="
-    celt [[ description = [ Enabled mangler to use CELT, not supported by Flagship ] ]]
-    dbus [[ description = [ Enables the now-playing feature for media players ] ]]
-    espeak [[ description = [ Enable text-to-speech for mangler ] ]]
+    celt [[ description = [ Enables Mangler to use CELT, not officially supported by Flagship ] ]]
+    dbus [[ description = [ Enables the now-playing feature for media players, known to work with MPD, Amarok and Rhytmbox ] ]]
+    espeak [[ description = [ Enable text-to-speech for Mangler ] ]]
     g15 [[ description = [ Show information on Logitech G15 keyboards ] ]]
     gsm [[ description = [ Enable support for the GSM 6.10 audio codec ] ]]
-    jukebox [[ description = [ Builds mangler-jukebox, needs mpg123 to read and stream Mp3 files. NOT SUPPORTED BY UPSTREAM ] ]]
+    jukebox [[
+        description = [ Builds mangler-jukebox, needs mpg123 to read and stream Mp3 files. NOT SUPPORTED BY UPSTREAM ]
+        requires = [ speex gsm ]
+    ]]
     speex
     xosd
 "
@@ -74,13 +77,15 @@ DEFAULT_SRC_CONFIGURE_PARAMS=(
 src_compile() {
     edo cd "${WORK}"
     emake DESTDIR="${IMAGE}" install
+    if option jukebox; then
+        edo cd "jukebox"
+        emake
+    fi
 }
 
 src_install() {
     default
     if option jukebox; then
-        edo cd "${WORKBASE}/${PNV}/jukebox"
-        emake all
-        dobin mangler-jukebox
+        dobin "${WORK}/jukebox/mangler-jukebox"
     fi
 }

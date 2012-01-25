@@ -26,10 +26,12 @@ DEPENDENCIES="
         celt? ( media-libs/celt:0.7.1 )
         dbus? ( dev-libs/dbus-glib:1[>=0.80] )
         espeak? ( app-speech/espeak )
+        flac? ( media-libs/flac ) [[ note = [ mangler-jukebox only: Optional for playing FLAC sound files ] ]]
         g15? ( app-misc/g15daemon )
         gsm? ( media-libs/gsm[=1.0.13] )
         jukebox? ( media-sound/mpg123 )
         speex? ( media-libs/speex[>=1.2_rc1] ) [[ note = [ Only tested and guaranteed to work with 1.2_rc1 ] ]]
+        vorbis? ( media-libs/libvorbis ) [[ note = [ mangler-jukebox only: Optional for playing OGG Vorbis sound files ] ]]
         xosd? ( x11-libs/xosd )
     suggestion:
         dbus? (
@@ -46,6 +48,10 @@ MYOPTIONS="
     celt [[ description = [ Enables Mangler to use CELT, not officially supported by Flagship ] ]]
     dbus [[ description = [ Enables the now-playing feature for media players, known to work with MPD, Amarok and Rhytmbox ] ]]
     espeak [[ description = [ Enable text-to-speech for Mangler ] ]]
+    flac [[
+        description = [ mangler-jukebox only: Adds support for the flac audio codec ]
+        requires = [ jukebox ]
+    ]]
     g15 [[ description = [ Show information on Logitech G15 keyboards ] ]]
     gsm [[ description = [ Enable support for the GSM 6.10 audio codec ] ]]
     jukebox [[
@@ -53,6 +59,10 @@ MYOPTIONS="
         requires = [ speex gsm ]
     ]]
     speex
+    vorbis [[
+        description = [ mangler-jukebox only: Adds support for the OggVorbis audio code ]
+        requires = [ jukebox ]
+    ]]
     xosd
 "
 

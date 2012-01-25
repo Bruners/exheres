@@ -13,7 +13,6 @@ SUMMARY="An open source VOIP client capable of connecting to Ventrilo 3.x server
 DESCRIPTION="Provides all standard functions found in the Windows client"
 PLATFORMS="
     ~amd64
-    ~x86
 "
 DEPENDENCIES="
     build:

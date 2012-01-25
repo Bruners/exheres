@@ -58,7 +58,7 @@ MYOPTIONS="
 "
 
 BUGS_TO="bruners@gmail.com"
-
+UPSTREAM_CHANGELOG="http://svn.mangler.org/mangler/tags/${PNV}/ChangeLog"
 DEFAULT_SRC_CONFIGURE_OPTION_ENABLES=(
     celt
     dbus

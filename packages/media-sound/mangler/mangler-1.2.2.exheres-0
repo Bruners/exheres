@@ -17,7 +17,6 @@ PLATFORMS="
 DEPENDENCIES="
     build:
         dev-util/pkg-config
-        sys-devel/autoconf[>=2.65]
     build+run:
         gnome-bindings/gtkmm:2.4
         gnome-desktop/librsvg:2

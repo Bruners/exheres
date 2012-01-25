@@ -31,7 +31,7 @@ DEPENDENCIES="
         g15? ( app-misc/g15daemon )
         gsm? ( media-libs/gsm[=1.0.13] )
         jukebox? ( media-sound/mpg123 )
-        speex? ( media-libs/speex[=1.2-rc1] )
+        speex? ( media-libs/speex[>=1.2_rc1] ) [[ note = [ Only tested and guaranteed to work with 1.2_rc1 ] ]]
         xosd? ( x11-libs/xosd )
     suggestion:
         gnome-desktop/rhythmbox [[ description = [ Mangler is capable of showing now-playing info from Rhytmbox ] ]]

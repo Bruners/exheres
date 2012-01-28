@@ -52,5 +52,7 @@ src_install() {
     edo mkdir -p "${IMAGE}"/usr/lib64
     edo ln -s /usr/"${LIBDIR}"/libssl.so "${IMAGE}/usr/${LIBDIR}"/libssl.so.0.9.8
     edo ln -s /usr/"${LIBDIR}"/libcrypto.so "${IMAGE}/usr/${LIBDIR}"/libcrypto.so.0.9.8
+    einfo "Problem solving:"
+    einfo "If spotify segfaults after update you can try to remove file offline.bak which is located in ~/.cache/spotify and restart spotify"
 }
 

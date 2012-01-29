@@ -23,15 +23,32 @@ PLATFORMS="
 
 DEPENDENCIES="
     run:
-    dev-libs/openssl
-    sys-apps/usbutils
-    sys-sound/alsa-lib
-    x11-libs/qt:4[dbus][webkit][X(+)]
+        dev-libs/glib:2[>=2.0.0]
+        dev-libs/nss[>=3.12.9] [[ description = [ Provides libnss3, libnssutils3 and libsmime3 ] ]]
+        dev-libs/nspr[>=4.8.6] [[ description = [ Provides libplc4 and libsnpr4 ] ]]
+        dev-libs/openssl[>=0.9.8] [[ description = [ Spotify wants 0.9.8 but works with >1.0.0,
+        provides libcrypto and libssl ] ]]
+        gnome-platform/GConf[>=2.20.0]
+        media-libs/libsndfile
+        media-libs/x264
+        media-plugins/gst-plugins-bad[>=0.10] [[ description = [ Provides libgstapp ] ]]
+        sys-apps/usbutils
+        sys-devel/gcc[>=4.0.0]
+        sys-libs/glibc[>=2.6]
+        sys-sound/alsa-lib[>=1.0.14]
+        x11-libs/gtk+:2[>=2.0.0]
+        x11-libs/libXScrnSaver
+        x11-libs/qt:4[>=4.5.0][dbus][webkit][X(+)]
+    suggestion:
+        net-apps/NetworkManager [[ description = [ Spotify calls for org.freedesktop.NetworkManager
+        during start-up, function unknown ] ]]
 "
 
-MYOPTIONS="platform:
-    amd64
-    x86
+MYOPTIONS="
+    static [[ description = [ Use static libpng12.so ] ]]
+    platform:
+        amd64
+        x86
 "
 
 BUGS_TO="
@@ -48,9 +65,23 @@ src_unpack() {
 }
 
 src_install() {
-    edo cp -r "${WORK}"/* "${IMAGE}"
-    edo mkdir -p "${IMAGE}"/usr/lib64
-    edo ln -s /usr/"${LIBDIR}"/libssl.so "${IMAGE}/usr/${LIBDIR}"/libssl.so.0.9.8
-    edo ln -s /usr/"${LIBDIR}"/libcrypto.so "${IMAGE}/usr/${LIBDIR}"/libcrypto.so.0.9.8
+    default
+    # edo cp -r "${WORK}"/* "${IMAGE}"
+    dodir "${IMAGE}"/usr/"${LIBDIR}"
+    dosym /usr/"${LIBDIR}"/libssl.so "${IMAGE}/usr/${LIBDIR}"/libssl.so.0.9.8
+    dosym /usr/"${LIBDIR}"/libcrypto.so "${IMAGE}/usr/${LIBDIR}"/libcrypto.so.0.9.8
+    dosym /usr/"${LIBDIR}"/nss/libnss3.so "${IMAGE}/usr/${LIBDIR}"/libnss3.so.1d
+    dosym /usr/"${LIBDIR}"/nss/libnssutil3.so "${IMAGE}/usr/${LIBDIR}"/libnssutil3.so.1d
+    dosym /usr/"${LIBDIR}"/nss/libsmime3.so "${IMAGE}/usr/${LIBDIR}"/libsmime3.so.1d
+    dosym /usr/"${LIBDIR}"/libplc4.so "${IMAGE}/usr/${LIBDIR}"/libplc4.so.0d
+    dosym /usr/"${LIBDIR}"/libnspr4.so "${IMAGE}/usr/${LIBDIR}"/libnspr4.so.0d
+
+    einfo "*** Problem solving ***"
+    einfo ""
+    einfo "If spotify segfaults when you run it after update, it could be a bug with libflashplayer
+    10.3.162.29-0.1 and the QT toolkit."
+    einfo "To resolve this you can delete offline.bak which is located in ~/.cache/spotify and
+    restart spotify."
+    einfo "As an alternative you can set MOZ_PLUGIN_PATH=/path/to/libflashplayer-10.3.162.29-0.1"
 }
 

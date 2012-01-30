@@ -39,13 +39,17 @@ DEPENDENCIES="
         x11-libs/gtk+:2[>=2.0.0]
         x11-libs/libXScrnSaver
         x11-libs/qt:4[>=4.5.0][dbus][webkit][X(+)]
+
+        libpng12? ( media-libs/libpng[=1.2.46] ) [[ note = [ Spotify depends on an old
+        libpng version which currently unavailable ] ]]
     suggestion:
         net-apps/NetworkManager [[ description = [ Spotify calls for org.freedesktop.NetworkManager
         during start-up, function unknown ] ]]
 "
 
 MYOPTIONS="
-    static [[ description = [ Use static libpng12.so ] ]]
+    libpng12 [[ description = [ Use a local ligpng12, look here for more info:
+    https://aur.archlinux.org/packages.php?ID=55414 ] ]]
     platform:
         amd64
         x86
@@ -65,9 +69,8 @@ src_unpack() {
 }
 
 src_install() {
-    default
-    # edo cp -r "${WORK}"/* "${IMAGE}"
     dodir "${IMAGE}"/usr/"${LIBDIR}"
+    edo cp -r "${WORK}"/* "${IMAGE}"
     dosym /usr/"${LIBDIR}"/libssl.so "${IMAGE}/usr/${LIBDIR}"/libssl.so.0.9.8
     dosym /usr/"${LIBDIR}"/libcrypto.so "${IMAGE}/usr/${LIBDIR}"/libcrypto.so.0.9.8
     dosym /usr/"${LIBDIR}"/nss/libnss3.so "${IMAGE}/usr/${LIBDIR}"/libnss3.so.1d

@@ -1,5 +1,5 @@
-# Copyright 2012 Lasse Brun <bruners@gmail.com>
 # Copyright 2009 Trond A Ekseth <troeks@gmail.com>
+# Copyright 2012 Lasse Brun <bruners@gmail.com>
 # Distributed under the terms of the GNU General Public License v2
 
 SUMMARY="Open Sound System"
@@ -10,7 +10,6 @@ require scm-hg systemd-service
 
 SLOT="0"
 PLATFORM="
-    ~x86
     ~amd64
 "
 MYOPTIONS=""
@@ -22,20 +21,20 @@ DEPENDENCIES="
 ECONF_SOURCE="${WORK}"
 
 src_configure() {
-    mkdir "${WORKBASE}/tmp"
-    cd "${WORKBASE}/tmp"
-   "${WORK}"/configure || die "configure failed"
+    dodir "${WORKBASE}/tmp"
+    edo cd "${WORKBASE}/tmp"
+    edo "${WORK}"/configure || die "configure failed"
 }
 
 src_compile() {
-    cd "${WORKBASE}/tmp"
-    emake build || die "emake build failed"
+    edo cd "${WORKBASE}/tmp"
+    emake build
 }
 
 src_install() {
-    cd "${WORKBASE}/tmp"
-    rmdir prototype/usr/lib/oss/save/
-    cp -r prototype/* "${IMAGE}"
+    edo cd "${WORKBASE}/tmp"
+    edo rmdir prototype/usr/lib/oss/save/
+    edo cp -r prototype/* ${IMAGE}
     install_systemd_files
 }
 

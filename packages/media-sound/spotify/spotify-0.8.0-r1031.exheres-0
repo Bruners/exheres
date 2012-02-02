@@ -39,8 +39,7 @@ DEPENDENCIES="
         x11-libs/gtk+:2[>=2.0.0]
         x11-libs/libXScrnSaver
         x11-libs/qt:4[>=4.5.0][dbus][webkit][X(+)]
-
-        libpng12? ( media-libs/libpng[=1.2.46] ) [[ note = [ Spotify depends on an old
+        media-libs/libpng[=1.2.46][-libpng?] [[ note = [ Spotify depends on an old
         libpng version which currently unavailable ] ]]
     suggestion:
         net-apps/NetworkManager [[ description = [ Spotify calls for org.freedesktop.NetworkManager

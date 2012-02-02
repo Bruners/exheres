@@ -1,0 +1,70 @@
+# Copyright 2011 Anders Ladegaard Marchsteiner <alm.anma@gmail.com>
+# Copyright 2012 Lasse Brun <bruners@gmail.com>
+# Distributed under the terms of the GNU General Public License v2
+
+SUMMARY="Music streaming service."
+DESCRIPTION="
+A DRM-based music streaming service offering streaming of selected music from a range of major and
+independent record labels, including Sony, EMI, Warner Music Group, and Universal.
+"
+HOMEPAGE="http://www.spotify.com"
+DOWNLOADS="
+    platform:amd64? ( http://download.spotify.com/preview/spotify-client-qt_0.6.6.10.gbd39032.58-1_amd64.deb )
+    platform:x86? ( http://download.spotify.com/preview/spotify-client-qt_0.6.6.10.gbd39032.58-1_i386.deb )
+"
+
+LICENCES="spotify"
+RESTRICT="strip"
+SLOT="0"
+PLATFORMS="~amd64"
+
+DEPENDENCIES="
+    run:
+        dev-libs/openssl[>=0.9.8] [[ description = [ Spotify wants 0.9.8 but works with >1.0.0 after
+        symlinking ] ]]
+        sys-apps/usbutils
+        sys-devel/gcc:*[>=4.0.0]
+        sys-libs/glibc[>=2.6]
+        sys-sound/alsa-lib[>=1.0.14]
+        x11-libs/libXScrnSaver[>=1.2.0]
+        x11-libs/qt:4[>=4.5.0][dbus][webkit][X(+)]
+
+    suggestion:
+        media/libav [[ description = [ Used for audio playback, The Spotify control file recommends:
+        libavcodec52, libavformat52 ] ]]
+"
+
+MYOPTIONS="
+    platform:
+        amd64
+        x86
+"
+
+
+BUGS_TO="
+    alm.anma@gmail.com
+    bruners@gmail.com
+"
+
+WORK="${WORKBASE}"
+
+src_unpack() {
+    default
+    unpack ./data.tar.gz
+    edo rm -f {control,data}.tar.gz debian-binary
+}
+
+src_install() {
+    edo cp -r "${WORK}"/* "${IMAGE}"
+    edo mkdir -p "${IMAGE}"/usr/${LIBDIR}
+    edo ln -s /usr/"${LIBDIR}"/libssl.so "${IMAGE}/usr/${LIBDIR}"/libssl.so.0.9.8
+    edo ln -s /usr/"${LIBDIR}"/libcrypto.so "${IMAGE}/usr/${LIBDIR}"/libcrypto.so.0.9.8
+    einfo "*** Problem solving ***"
+    einfo ""
+    einfo "If spotify segfaults when you run it after update, it could be a bug with libflashplayer
+    10.3.162.29-0.1 and the QT toolkit."
+    einfo "To resolve this you can delete offline.bak which is located in ~/.cache/spotify and
+    restart spotify."
+    einfo "As an alternative you can set MOZ_PLUGIN_PATH=/path/to/libflashplayer-10.3.162.29-0.1"
+}
+

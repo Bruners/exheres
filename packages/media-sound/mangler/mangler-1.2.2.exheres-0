@@ -95,6 +95,6 @@ src_compile() {
 src_install() {
     default
     if option jukebox; then
-        dobin "${WORK}/jukebox/mangler-jukebox"
+        dobin "${WORK}"/jukebox/mangler-jukebox
     fi
 }

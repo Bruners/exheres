@@ -12,7 +12,7 @@ applications such as 'peksystray' and 'docker'.
 
 trayer-srg was forked from trayer in january 2010 to add some fancy features and clean up code.
 "
-HOMEPAGE="https://github.com/sargon/trayer-src"
+HOMEPAGE="https://github.com/sargon/trayer-srg"
 DOWNLOADS=""
 LICENCES="GPL-2"
 SLOT="0"

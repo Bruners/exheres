@@ -34,7 +34,7 @@ src_compile() {
 src_install() {
     edo cd "${WORKBASE}/tmp"
     edo rmdir prototype/usr/lib/oss/save/
-    edo cp -r prototype/* ${IMAGE}
+    edo cp -r prototype/* "${IMAGE}"
     install_systemd_files
 }
 

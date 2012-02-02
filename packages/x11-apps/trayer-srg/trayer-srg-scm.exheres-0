@@ -29,6 +29,6 @@ DEPENDENCIES="
 "
 
 src_install() {
-    dobin ${WORK}/trayer
-    doman ${WORK}/man/trayer.1
+    dobin "${WORK}"/trayer
+    doman "${WORK}"/man/trayer.1
 }

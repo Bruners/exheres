@@ -2,7 +2,8 @@ Packages that should be in this repository
 
 * media-sound
 ** mangler
-** spotify
 ** mumble
 * sys-sound
 ** oss
+* x11-apps
+** trayer-srg

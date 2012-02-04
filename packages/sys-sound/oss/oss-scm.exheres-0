@@ -21,7 +21,7 @@ DEPENDENCIES="
 ECONF_SOURCE="${WORK}"
 
 src_configure() {
-    dodir "${WORKBASE}"/tmp
+    edo mkdir "${WORKBASE}"/tmp
     edo cd "${WORKBASE}"/tmp
     edo "${WORK}"/configure || die "configure failed"
 }

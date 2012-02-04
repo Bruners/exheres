@@ -21,18 +21,18 @@ DEPENDENCIES="
 ECONF_SOURCE="${WORK}"
 
 src_configure() {
-    dodir "${WORKBASE}/tmp"
-    edo cd "${WORKBASE}/tmp"
+    dodir "${WORKBASE}"/tmp
+    edo cd "${WORKBASE}"/tmp
     edo "${WORK}"/configure || die "configure failed"
 }
 
 src_compile() {
-    edo cd "${WORKBASE}/tmp"
+    edo cd "${WORKBASE}"/tmp
     emake build
 }
 
 src_install() {
-    edo cd "${WORKBASE}/tmp"
+    edo cd "${WORKBASE}"/tmp
     edo rmdir prototype/usr/lib/oss/save/
     edo cp -r prototype/* "${IMAGE}"
     install_systemd_files

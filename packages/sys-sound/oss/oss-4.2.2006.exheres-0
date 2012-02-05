@@ -4,13 +4,13 @@
 
 require oss
 
-_MYPV=$(ever range 1-2)
-_MYBUILD=$(ever range 3)
-_MYP="oss-v${_MYPV}-build${_MYBUILD}-src-gpl"
+MY_PV=$(ever range 1-2)
+MY_BUILD=$(ever range 3)
+MY_P="oss-v${MY_PV}-build${MY_BUILD}-src-gpl"
 
-WORK="${WORKBASE}/${_MYP}"
+WORK="${WORKBASE}/${MY_P}"
 
-DOWNLOADS="http://www.4front-tech.com/developer/sources/stable/gpl/"${_MYP}".tar.bz2"
+DOWNLOADS="http://www.4front-tech.com/developer/sources/stable/gpl/"${MY_P}".tar.bz2"
 
 SLOT="0"
 PLATFORM="

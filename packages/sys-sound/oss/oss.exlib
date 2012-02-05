@@ -1,0 +1,64 @@
+# Copyright 2009 Trond A Ekseth <troeks@gmail.com>
+# Copyright 2012 Lasse Brun <bruners@gmail.com>
+# Distributed under the terms of the GNU General Public License v2
+
+SUMMARY="Open Sound System"
+HOMEPAGE="http://www.opensound.com/oss.html"
+DESCRIPTION="
+Open Sound System (OSS) is the first attempt in unifying the digital audio architecture for UNIX.
+OSS is a set of device drivers that provide a uniform API across all the major UNIX architectures.
+
+It supports Sound Blaster or Windows Sound System compatible sound cards which can be plugged into any UNIX workstation supporting the ISA or PCI bus architecture.
+OSS also supports workstations with on-board digital audio hardware.
+"
+require systemd-service
+
+DOWNLOADS=""
+LICENCES="GPL-2"
+
+MYOPTIONS=""
+
+DEPENDENCIES="
+    build:
+        sys-devel/libtool
+    build+run:
+        sys-kernel/linux-headers[>=2.6.0]
+        x11-libs/gtk+:2 [[ description = [ Required to build the graphical mixer ossxmix. ] ]]
+    suggestion:
+        sys-apps/gawk [[ description = [
+            Used for creating man pages with txt2man.
+            OSS fallbacks to a small C program to do this if gawk isn't there - result is uglier but usable
+        ] ]]
+    group/audio
+"
+
+BUGS_TO="bruners@gmail.com"
+
+
+ECONF_SOURCE="${WORK}"
+
+src_prepare() {
+    # Change OSSLIBDIR in configure to be less static
+    edo sed -i -e 's:OSSLIBDIR="/usr/lib/oss":OSSLIBDIR="/usr/${LIBDIR}/oss":' configure
+}
+
+src_configure() {
+    # Make a tmp build dir from where we need to run the configure script
+    edo mkdir "${WORKBASE}"/tmp
+    edo cd "${WORKBASE}"/tmp
+    edo "${WORK}"/configure
+}
+
+src_compile() {
+    edo cd "${WORKBASE}"/tmp
+    emake build
+}
+
+src_install() {
+    default
+    edo cd "${WORKBASE}"/tmp
+    edo rmdir prototype/usr/${LIBDIR}/oss/save/
+    edo cp -r prototype/* "${IMAGE}"
+    install_systemd_files
+}
+

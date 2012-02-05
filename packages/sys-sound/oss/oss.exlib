@@ -27,7 +27,7 @@ DEPENDENCIES="
     suggestion:
         sys-apps/gawk [[ description = [
             Used for creating man pages with txt2man.
-            OSS fallbacks to a small C program to do this if gawk isn't there - result is uglier but usable
+            OSS falls back to a small C program to do this if gawk isn't there - result is uglier but usable
         ] ]]
     group/audio
 "

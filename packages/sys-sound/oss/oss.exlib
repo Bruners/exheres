@@ -18,8 +18,6 @@ LICENCES="GPL-2"
 MYOPTIONS=""
 
 DEPENDENCIES="
-    build:
-        sys-devel/libtool
     build+run:
         sys-kernel/linux-headers[>=2.6.0]
         x11-libs/gtk+:2 [[ description = [ Required to build the graphical mixer ossxmix. ] ]]

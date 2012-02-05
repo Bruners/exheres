@@ -47,8 +47,7 @@ src_configure() {
 }
 
 src_compile() {
-    edo cd "${WORKBASE}"/tmp
-    emake build
+    emake -C "${WORKBASE}"/tmp build
 }
 
 src_install() {

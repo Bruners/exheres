@@ -2,39 +2,10 @@
 # Copyright 2012 Lasse Brun <bruners@gmail.com>
 # Distributed under the terms of the GNU General Public License v2
 
-SUMMARY="Open Sound System"
-HOMEPAGE="http://www.opensound.com/oss.html"
-
 SCM_REPOSITORY="http://opensound.hg.sourceforge.net/hgweb/opensound/opensound/"
-require scm-hg systemd-service
+require oss scm-hg
 
 SLOT="0"
 PLATFORM="
     ~amd64
 "
-MYOPTIONS=""
-
-DEPENDENCIES="
-    group/audio
-"
-
-ECONF_SOURCE="${WORK}"
-
-src_configure() {
-    edo mkdir "${WORKBASE}"/tmp
-    edo cd "${WORKBASE}"/tmp
-    edo "${WORK}"/configure || die "configure failed"
-}
-
-src_compile() {
-    edo cd "${WORKBASE}"/tmp
-    emake build
-}
-
-src_install() {
-    edo cd "${WORKBASE}"/tmp
-    edo rmdir prototype/usr/lib/oss/save/
-    edo cp -r prototype/* "${IMAGE}"
-    install_systemd_files
-}
-

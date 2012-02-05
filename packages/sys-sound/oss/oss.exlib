@@ -13,7 +13,6 @@ OSS also supports workstations with on-board digital audio hardware.
 "
 require systemd-service
 
-DOWNLOADS=""
 LICENCES="GPL-2"
 
 MYOPTIONS=""

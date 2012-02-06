@@ -2,7 +2,7 @@
 # Distributed under the terms of the GNU General Public License v2
 
 SLOT="0"
-DOWNLOADS="http://www.mangler.org/downloads/"${PNV}".tar.bz2"
+DOWNLOADS="http://www.mangler.org/downloads/${PNV}.tar.bz2"
 HOMEPAGE="http://www.mangler.org"
 LICENCES="
     GPL-3
@@ -61,7 +61,7 @@ MYOPTIONS="
 "
 
 BUGS_TO="bruners@gmail.com"
-UPSTREAM_CHANGELOG="http://svn.mangler.org/mangler/tags/"${PV}"/ChangeLog"
+UPSTREAM_CHANGELOG="http://svn.mangler.org/mangler/tags/${PV}/ChangeLog"
 DEFAULT_SRC_CONFIGURE_OPTION_ENABLES=(
     celt
     dbus

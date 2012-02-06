@@ -10,7 +10,7 @@ MY_P="oss-v${MY_PV}-build${MY_BUILD}-src-gpl"
 
 WORK="${WORKBASE}/${MY_P}"
 
-DOWNLOADS="http://www.4front-tech.com/developer/sources/stable/gpl/"${MY_P}".tar.bz2"
+DOWNLOADS="http://www.4front-tech.com/developer/sources/stable/gpl/${MY_P}.tar.bz2"
 
 SLOT="0"
 PLATFORM="

@@ -6,7 +6,13 @@
 
 require qmake4 sourceforge [ suffix=tar.gz ]
 
-SUMMARY="Mumble is an open source, low-latency, high quality voice chat software primarily intended for use while gaming."
+SUMMARY="Mumble is an open source, low-latency, high quality voice chat software"
+DESCRIPTION="
+Mumble is a voice chat application for groups. While it can be used for any kind of
+activity, it is primarily intended for gaming. It can be compared to programs like Ventrilo or
+TeamSpeak. People tend to simplify things, so when they talk about Mumble they either talk about
+\"Mumble\" the client application or about \"Mumble & Murmur\" the whole voice chat application suite.
+"
 
 LICENCES="BSD-2"
 SLOT="0"

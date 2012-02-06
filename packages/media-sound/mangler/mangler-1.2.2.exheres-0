@@ -81,8 +81,7 @@ DEFAULT_SRC_CONFIGURE_PARAMS=(
 src_compile() {
     default
     if option jukebox; then
-        edo cd "jukebox"
-        emake
+        emake -C jukebox
     fi
 }
 

@@ -6,6 +6,6 @@ SCM_REPOSITORY="http://opensound.hg.sourceforge.net/hgweb/opensound/opensound/"
 require oss scm-hg
 
 SLOT="0"
-PLATFORM="
+PLATFORMS="
     ~amd64
 "

@@ -5,6 +5,8 @@ SCM_REPOSITORY="git://git.atheme.org/libaosd.git"
 
 require autotools libaosd scm-git
 
+supported_autoconf=[ >2.1 ] supported_automake=[ none ]
+
 SLOT="0"
 PLATFORMS="~amd64"
 

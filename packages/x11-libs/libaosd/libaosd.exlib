@@ -1,0 +1,35 @@
+# Copyright 2012 Lasse Brun <bruners@gmail.com>
+# Distributed under the terms of the GNU General Public License v2
+
+SUMMARY="An advanced on screen display (OSD) library"
+DESCRIPTION="libaosd uses Cairo to create high quality
+rendered graphics to be overlaid on top of the screen.
+
+Libaosd provides the following transparency options:
+No transparency - the startup default, you'll see a black rectangle,
+Fake transparency - when osd background is copied from the screen contents,
+XComposite - the way of screen composition with rapidly increasing popularity
+"
+HOMEPAGE="http://www.atheme.org/project/libaosd"
+
+LICENCES="
+    MIT
+    X11
+"
+
+DEPENDENCIES="
+    build+run:
+        dev-libs/glib:2
+        x11-libs/libXcomposite [[ description = [ Needed for real transparency ] ]]
+        x11-libs/libXrender
+        x11-libs/pango [[ description = [ Needed to use text style helpers ] ]]
+"
+
+BUGS_TO="bruners@gmail.com"
+
+DEFAULT_SRC_CONFIGURE_PARAMS=(
+    --enable-glib=yes
+    --enable-xcomposite=yes
+    --enable-pangocairo=yes
+)
+

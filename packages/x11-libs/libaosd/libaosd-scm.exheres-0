@@ -3,17 +3,20 @@
 
 SCM_REPOSITORY="git://git.atheme.org/libaosd.git"
 
-require libaosd scm-git
+require autotools libaosd scm-git
 
 SLOT="0"
 PLATFORMS="~amd64"
+
+# The directory aclocal should search
+AT_M4DIR="m4"
 
 src_prepare() {
     # The repo contains files in dos format which makes the next step crash
     edo find ./ -type f | xargs sed -i -e 's/$//'
 
     # Prepare a configure file for installation
-    edo aclocal -I m4
-    edo autoheader
-    edo autoconf
+    eaclocal -I m4
+    eautoheader
+    eautoconf
 }

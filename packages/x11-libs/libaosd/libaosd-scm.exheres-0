@@ -13,7 +13,7 @@ AT_M4DIR="m4"
 
 src_prepare() {
     # The repo contains files in dos format which makes the next step crash
-    edo find ./ -type f | xargs sed -i -e 's/$//'
+    edo find ./ -type f | xargs sed -i -e 's/\r$//'
 
     # Prepare a configure file for installation
     eaclocal -I m4

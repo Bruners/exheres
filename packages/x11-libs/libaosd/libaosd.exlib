@@ -11,7 +11,7 @@ Fake transparency - when osd background is copied from the screen contents,
 XComposite - the way of screen composition with rapidly increasing popularity
 
 Also provides aosd_cat, a fully working \"cat-to-osd\" tool that displays UTF-8 text in a
-transparent OSD frame"
+transparent OSD frame
 "
 HOMEPAGE="http://www.atheme.org/project/libaosd"
 
@@ -44,3 +44,4 @@ aosd_pkg_postinst() {
     elog "# uname -a | aosd_cat"
     elog "# man aosd_cat"
 }
+

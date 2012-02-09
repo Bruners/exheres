@@ -3,7 +3,7 @@
 
 require libaosd
 
-DOWNLOADS="http://distfiles.atheme.org/libaosd-0.2.7.tgz"
+DOWNLOADS="http://distfiles.atheme.org/${PNV}.tgz"
 PLATFORMS="~amd64"
 SLOT="0"
 

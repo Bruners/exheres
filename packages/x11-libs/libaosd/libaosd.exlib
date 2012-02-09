@@ -9,6 +9,9 @@ Libaosd provides the following transparency options:
 No transparency - the startup default, you'll see a black rectangle,
 Fake transparency - when osd background is copied from the screen contents,
 XComposite - the way of screen composition with rapidly increasing popularity
+
+Also provides aosd_cat, a fully working \"cat-to-osd\" tool that displays UTF-8 text in a
+transparent OSD frame"
 "
 HOMEPAGE="http://www.atheme.org/project/libaosd"
 
@@ -33,3 +36,11 @@ DEFAULT_SRC_CONFIGURE_PARAMS=(
     --enable-pangocairo=yes
 )
 
+aosd_pkg_postinst() {
+    elog "*** Info ***"
+    elog "To test libaosd you can try the provided tool aosd_cat"
+    elog "aosd_cat works in the same fashion as cat, but make sure that you read the man page as well"
+    elog ""
+    elog "# uname -a | aosd_cat"
+    elog "# man aosd_cat"
+}

@@ -36,7 +36,7 @@ DEFAULT_SRC_CONFIGURE_PARAMS=(
     --enable-pangocairo=yes
 )
 
-aosd_pkg_postinst() {
+pkg_postinst() {
     elog "*** Info ***"
     elog "To test libaosd you can try the provided tool aosd_cat"
     elog "aosd_cat works in the same fashion as cat, but make sure that you read the man page as well"

@@ -43,7 +43,6 @@ DEPENDENCIES="
         dev-lang/python[>=2.4&<3.0]
         dev-python/dbus-python
         gnome-bindings/pygobject
-        gnome-bindings/pygtk[>=2.10][glade]
         curses? (
             dev-python/urwid[>=0.9.8.3]
         )
@@ -63,19 +62,43 @@ DEPENDENCIES="
         dev-python/notify-python [[ description = [ make Wicd show notifications ] ]]
 "
 
+if ever at_least 1.7.1; then
+    DEPENDENCIES+="
+        build+run:
+            gnome-bindings/pygtk[>=2.10]
+    "
+else
+    DEPENDENCIES+="
+        build+run:
+            gnome-bindings/pygtk[>=2.10][glade]
+    "
+fi
+
 BUGS_TO="alip@exherbo.org kimrhh@exherbo.org"
 
 REMOTE_IDS="launchpad:${PN}"
 
 wicd_src_configure() {
-    edo python setup.py configure --distro=gentoo
+    args=( --distro=gentoo )
+
+    if ever at_least 1.7.1; then
+        args+=(
+            --python="${PYTHON}"
+            --systemd=/usr/${LIBDIR}/systemd/system
+        )
+    fi
+
+    edo python setup.py configure "${args[@]}"
 }
 
 wicd_src_install() {
     distutils_src_install
 
     option baselayout || edo rm -Rf "${IMAGE}"/etc/init.d
-    install_systemd_files
+
+    if ! ever at_least 1.7.1; then
+        install_systemd_files
+    fi
 
     keepdir /etc/wicd/scripts/{pre,post}{,dis}connect
     keepdir /var/lib/wicd/configurations

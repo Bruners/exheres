@@ -3,8 +3,6 @@ Packages that should be in this repository
 * media-sound
 ** mangler
 ** mumble
-* net-misc
-** wicd
 * sys-sound
 ** oss
 * x11-apps

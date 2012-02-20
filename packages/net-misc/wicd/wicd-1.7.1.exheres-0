@@ -1,9 +1,0 @@
-# Copyright 2009 Mike Kelly
-#           2011 Kim Højgaard-Hansen <kimrhh@exherbo.org>
-#           2011 Ali Polatel <alip@exherbo.org>
-# Distributed under the terms of the GNU General Public License v2
-
-require wicd
-
-PLATFORMS="~amd64 ~x86"
-

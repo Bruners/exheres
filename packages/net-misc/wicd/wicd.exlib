@@ -79,7 +79,7 @@ BUGS_TO="alip@exherbo.org kimrhh@exherbo.org"
 REMOTE_IDS="launchpad:${PN}"
 
 wicd_src_configure() {
-    args=( --distro=gentoo )
+    args=( --distro=exherbo )
 
     if ever at_least 1.7.1; then
         args+=(

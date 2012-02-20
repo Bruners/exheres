@@ -1,0 +1,84 @@
+# Copyright 2009 Mike Kelly
+#           2011 Kim Højgaard-Hansen <kimrhh@exherbo.org>
+#           2011 Ali Polatel <alip@exherbo.org>
+# Distributed under the terms of the GNU General Public License v2
+
+require distutils systemd-service
+export_exlib_phases src_configure src_install
+
+# This is for beta releases.
+MY_PNV="${PNV/_beta/b}"
+WORK="${WORKBASE}"/${MY_PNV}
+
+SUMMARY="wired and wireless network manager"
+DESCRIPTION="
+Wicd is an open source wired and wireless network manager for Linux
+which aims to provide a simple interface to connect to networks with a
+wide variety of settings.
+
+Some of Wicd's features include:
+
+   1. No Gnome dependencies (although it does require GTK), so it is
+      easy to use in XFCE, Fluxbox, Openbox, Enlightenment, etc.
+   2. Ability to connect to wired and wireless networks
+   3. Profiles for each wireless network and wired network
+   4. Many encryption schemes, some of which include WEP/WPA/WPA2 (and
+      you can add your own)
+   5. Remains compatible with wireless-tools
+   6. Tray icon showing network activity and signal strength
+   7. A full-featured console interface
+"
+HOMEPAGE="http://wicd.sourceforge.net/"
+DOWNLOADS="mirror://sourceforge/${PN}/${MY_PNV}.tar.gz"
+
+LICENCES="GPL-2"
+SLOT="0"
+MYOPTIONS="
+baselayout [[ description = [ Install baselayout init script ] ]]
+curses [[ description = [ Build a text mode client ] ]]
+"
+
+DEPENDENCIES="
+    build+run:
+        dev-lang/python[>=2.4&<3.0]
+        dev-python/dbus-python
+        gnome-bindings/pygobject
+        gnome-bindings/pygtk[>=2.10][glade]
+        curses? (
+            dev-python/urwid[>=0.9.8.3]
+        )
+    run:
+        || (
+            net-misc/dhcpcd
+            net-misc/dhcp
+        )
+        net-wireless/wireless_tools
+        sys-apps/net-tools
+    suggestion:
+        app-admin/ktsuss [[ description = [ make Wicd use ktsuss for graphical sudo ] ]]
+        kde/kdebase-runtime [[ description = [ make Wicd use kdesu for graphical sudo ] ]]
+        kde/kde-runtime [[ description = [ make Wicd use kdesu for graphical sudo ] ]]
+        sys-power/pm-utils[>=1.2.4] [[ description = [ For suspend/resume integration ] ]]
+        x11-libs/gksu [[ description = [ make Wicd use gksu for graphical sudo ] ]]
+        dev-python/notify-python [[ description = [ make Wicd show notifications ] ]]
+"
+
+BUGS_TO="alip@exherbo.org kimrhh@exherbo.org"
+
+REMOTE_IDS="launchpad:${PN}"
+
+wicd_src_configure() {
+    edo python setup.py configure --distro=gentoo
+}
+
+wicd_src_install() {
+    distutils_src_install
+
+    option baselayout || edo rm -Rf "${IMAGE}"/etc/init.d
+    install_systemd_files
+
+    keepdir /etc/wicd/scripts/{pre,post}{,dis}connect
+    keepdir /var/lib/wicd/configurations
+    keepdir /var/log/wicd
+}
+

@@ -7,3 +7,5 @@ Packages that should be in this repository
 ** oss
 * x11-apps
 ** trayer-srg
+* x11-libs
+** libaosd

@@ -10,7 +10,7 @@ Unico is a Gtk+ engine that aims to be the more complete yet powerful theming en
 and newer. It’s the first Gtk+ engine written with Gtk+ style context APIs in mind, using CSS as first class
 citizen.
 "
-LICENCES="GPL-3"
+LICENCES="LGPL-3"
 SLOT="0"
 PLATFORMS="~amd64"
 

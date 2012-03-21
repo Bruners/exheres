@@ -1,0 +1,12 @@
+[Unit]
+Description=Mumble server
+
+[Service]
+Type=dbus
+BusName=net.sourceforge.mumble.murmur
+User=mumble-server
+Group=mumble-server
+ExecStart=/usr/bin/murmurd -fg -ini /etc/mumble/murmur.ini
+
+[Install]
+WantedBy=multi-user.target

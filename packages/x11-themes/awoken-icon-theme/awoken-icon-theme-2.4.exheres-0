@@ -1,0 +1,72 @@
+# Copyright 2012 Lasse Brun <bruners@gmail.com>
+# Distributed under the terms of the GNU General Public License v2
+# Based in part upon 'awoken-icon-theme-2.4.ebuild' from ephemeral-gentoo-overlay, which is:
+#     Copyright 1999-2011 Gentoo Foundation
+
+require gtk-icon-cache
+
+MY_PN="AwOken"
+
+SUMMARY="${MY_PN} icon theme"
+DESCRIPTION="A full token-style iconset with several custimization options provided by scripts.
+Personalize your desktop choosing between 46 folder types, 123 \"start-here\"-logos, 100^3 colors"
+HOMEPAGE="http://alecive.deviantart.com/art/${MY_PN,,}-163570862"
+DOWNLOADS="http://www.deviantart.com/download/163570862/ -> ${PNV}.zip"
+LICENCES="CCPL-Attribution-ShareAlike-3.0"
+SLOT="0"
+PLATFORMS="~amd64 ~x86"
+MYOPTIONS="
+    custom [[ description = [ Scripts to customize icon colors, styles, folders and much more ] ]]
+"
+
+DEPENDENCIES="
+    build:
+        app-arch/unzip
+    suggestion:
+        custom? (
+            gnome-desktop/zenity [[
+                description = [ Optional GUI mode for the customization scripts ]
+            ]]
+            media-gfx/ImageMagick[png(+)] [[
+                description = [ Needed by the customization scripts to change icon colors ]
+            ]]
+        )
+"
+
+BUGS_TO="bruners@gmail.com"
+
+WORK=${WORKBASE}/${MY_PN}-${PV}
+
+src_unpack() {
+    default
+
+    # Extract the extra archives inside the package
+    edo pushd "${WORK}"
+    for THEME in ${MY_PN}{,Dark,White}; do
+        edo tar zxf "${THEME}".tar.gz
+    done
+    edo popd
+}
+src_prepare() {
+    # Update the customise script with the correct doc path
+    edo sed -i -e \
+    "s:\$DIR/\$ICNST/Installation_and_Instructions.pdf:/usr/share/doc/${PNVR}/Installation_and_Instructions.pdf:" \
+    ${MY_PN}/${MY_PN,,}-icon-theme-customization
+}
+
+src_install() {
+    for THEME in ${MY_PN}{,Dark,White}; do
+        insinto /usr/share/icons/"${THEME}"
+        doins -r "${THEME}"/{clear,extra}
+        doins "${THEME}"/index.theme
+        if optionq custom ; then
+            doins "${THEME}"/${MY_PN,,}-icon-theme-customization-*
+        fi
+    done
+
+    if optionq custom ; then
+        dobin ${MY_PN}/${MY_PN,,}-icon-theme-customization
+    fi
+    dodoc ${MY_PN}/Installation_and_Instructions.pdf
+}
+

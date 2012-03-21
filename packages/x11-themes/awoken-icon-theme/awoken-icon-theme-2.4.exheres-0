@@ -8,7 +8,7 @@ require gtk-icon-cache
 MY_PN="AwOken"
 
 SUMMARY="${MY_PN} icon theme"
-DESCRIPTION="A full token-style iconset with several custimization options provided by scripts.
+DESCRIPTION="A full token-style iconset with several customization options provided by scripts.
 Personalize your desktop choosing between 46 folder types, 123 \"start-here\"-logos, 100^3 colors"
 HOMEPAGE="http://alecive.deviantart.com/art/${MY_PN,,}-163570862"
 DOWNLOADS="http://www.deviantart.com/download/163570862/ -> ${PNV}.zip"

@@ -10,4 +10,6 @@ Packages that should be in this repository
 * x11-libs
 ** libaosd
 * x11-themes
+** awoken-icon-theme
 ** gtk-engines-unico
+** omg-suite-theme

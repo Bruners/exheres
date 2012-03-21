@@ -1,0 +1,43 @@
+# Copyright 2012 Lasse Brun <bruners@gmail.com>
+# Distributed under the terms of the GNU General Public License v2
+
+MY_URL="http://nale12.deviantart.com"
+
+SUMMARY="OMG Suite - the dark GTK theme that rocks"
+DESCRIPTION="
+A dark GTK theme in three styles with support for Metacity, Unity, XFwm4, Openbox and Emerald.
+Gnome-Shell and Chromium themes in the same style is available at ${MY_URL}
+"
+HOMEPAGE="${MY_URL}/art/OMG-Suite-288398137"
+DOWNLOADS="http://www.deviantart.com/download/288398137/omg_suite_by_nale12-d4rpdfd.zip -> ${PNV}.zip"
+
+LICENCES="GPL-3"
+SLOT="0"
+PLATFORMS="~amd64 ~x86"
+
+DEPENDENCIES="
+    build:
+        app-arch/unzip
+    run:
+        (
+            x11-libs/gtk+:2
+            x11-themes/gtk-engines-murrine
+        ) [[ description = [ Needed for the GTK2 part of the theme ] ]]
+        x11-themes/gtk-engines-unico [[ description = [ Needed for the GTK3 part of the theme ] ]]
+    suggestion:
+        x11-themes/awoken-icon-theme [[
+            description = [ A dark icon theme recommended by the author of ${PN} ]
+        ]]
+"
+
+BUGS_TO="bruners@gmail.com"
+
+WORK=${WORKBASE}
+
+src_install() {
+    insinto /usr/share/themes
+    for THEME in OMG{,-Dark,-Light}; do
+        doins -r "${THEME}"
+    done
+    doins OMG.emerald
+}

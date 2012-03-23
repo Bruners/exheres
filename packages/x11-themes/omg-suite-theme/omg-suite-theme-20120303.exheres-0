@@ -38,6 +38,13 @@ src_install() {
     insinto /usr/share/themes
     for THEME in OMG{,-Dark,-Light}; do
         doins -r "${THEME}"
+
+        # A part of the theme use the unavailable mist engine.
+        # change it to murrine like the rest of the text styles
+        edo sed -i -e \
+        "s:engine \"mist\":engine \"murrine\":" \
+        "${THEME}/gtk-2.0/styles/inactivetext"
     done
     doins OMG.emerald
+    doins Left-Buttons-Metacity
 }

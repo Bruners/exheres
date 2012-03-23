@@ -38,9 +38,11 @@ src_prepare() {
     edo pushd "${WORK}"
     # A part of the theme use the unavailable mist engine.
     # change it to murrine like the rest of the text styles
-    edo sed -i -e \
-    "s:engine \"mist\":engine \"murrine\":" \
-    "${THEME}"/gtk-2.0/styles/inactivetext
+    for THEME in OMG{,-Dark,-Light}; do
+        edo sed -i -e \
+        "s:engine \"mist\":engine \"murrine\":" \
+        "${THEME}"/gtk-2.0/styles/inactivetext
+    done
     edo popd
 }
 

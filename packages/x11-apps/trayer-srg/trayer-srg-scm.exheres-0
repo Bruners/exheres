@@ -1,9 +1,7 @@
 # Copyright 2012 Lasse Brun <bruners@gmail.com>
 # Distributed under the terms of the GNU General Public License v2
 
-SCM_REPOSITORY="git://github.com/sargon/trayer-srg.git"
-
-require scm-git
+require github [ user=sargon ]
 
 SUMMARY="trayer-srg is a lightweight GTK2-based systray for UNIX desktop"
 DESCRIPTION="trayer-srg is small program designed to provide systray functionality present in GNOME/KDE
@@ -12,8 +10,6 @@ applications such as 'peksystray' and 'docker'.
 
 trayer-srg was forked from trayer in january 2010 to add some fancy features and clean up code.
 "
-HOMEPAGE="https://github.com/sargon/trayer-srg"
-DOWNLOADS=""
 LICENCES="GPL-2"
 SLOT="0"
 PLATFORMS="~amd64"

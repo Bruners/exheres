@@ -17,7 +17,10 @@ TeamSpeak. People tend to simplify things, so when they talk about Mumble they e
 LICENCES="BSD-2"
 SLOT="0"
 PLATFORMS="~amd64"
-MYOPTIONS="alsa avahi pulseaudio systemd"
+MYOPTIONS="alsa avahi pulseaudio
+    server [[ description = [ Build the mumble server called murmurd ] ]]
+    systemd [[ requires = [ server ] ]]
+"
 
 DEPENDENCIES="
     build:
@@ -28,14 +31,16 @@ DEPENDENCIES="
         dev-libs/protobuf
         media-libs/libsndfile
         media-libs/speex[>=1.2_rc1]
-        sys-libs/libcap
-        user/mumble-server
         x11-libs/libX11
         x11-libs/libXi
         x11-libs/qt:4[dbus][opengl][sql][sqlite][ssl]
         alsa? ( sys-sound/alsa-lib )
         avahi? ( net-dns/avahi[dns_sd] )
         pulseaudio? ( media-sound/pulseaudio )
+        server? (
+            sys-libs/libcap
+            user/mumble-server
+        )
 "
 
 src_configure() {
@@ -54,6 +59,7 @@ src_configure() {
     option alsa || config+=( no-alsa )
     option avahi || config+=( no-bonjour )
     option pulseaudio || config+=( no-pulseaudio )
+    option server || config+=( no-server )
 
     eqmake4 main.pro -recursive \
         CONFIG+="${config[*]}" \
@@ -62,26 +68,29 @@ src_configure() {
 
 src_install() {
     dobin release/mumble
-    dobin release/murmurd
     doman man/mumble.1
-    doman man/murmurd.1
 
-    insinto /etc/dbus-1/system.d
-    doins scripts/murmur.conf
-    insinto /etc/mumble
-    newins scripts/murmur.ini.system murmur.ini
+    if option server ; then
+        dobin release/murmurd
+        doman man/murmurd.1
 
-    keepdir /var/{lib,log}/mumble-server
-    edo chown mumble-server:mumble-server "${IMAGE}"/var/{lib,log}/mumble-server
+        insinto /etc/dbus-1/system.d
+        doins scripts/murmur.conf
+        insinto /etc/mumble
+        newins scripts/murmur.ini.system murmur.ini
+
+        keepdir /var/{lib,log}/mumble-server
+        edo chown mumble-server:mumble-server "${IMAGE}"/var/{lib,log}/mumble-server
+
+        install_systemd_files
+        insinto /usr/lib64/tmpfiles.d
+        option systemd && doins "${FILES}"/systemd/murmurd.conf
+    fi
 
     exeinto /usr/${LIBDIR}/mumble
     doexe release/lib*.so*
     exeinto /usr/${LIBDIR}/mumble/plugins
     doexe release/plugins/lib*.so*
-
-    install_systemd_files
-    insinto /usr/lib64/tmpfiles.d
-    doins "${FILES}"/systemd/murmurd.conf
 
     emagicdocs
 }

@@ -26,7 +26,7 @@ DEPENDENCIES="
     build+run:
         x11-libs/gtk+:3
         x11-libs/libX11
-    suggestions:
+    suggestion:
         alsa? ( sys-sound/alsa-lib )
         pulseaudo? ( media-sound/pulseaudio )
 "

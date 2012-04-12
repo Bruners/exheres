@@ -28,7 +28,7 @@ DEPENDENCIES="
         x11-libs/libX11
     suggestion:
         alsa? ( sys-sound/alsa-lib )
-        pulseaudo? ( media-sound/pulseaudio )
+        pulseaudio? ( media-sound/pulseaudio )
 "
 
 BUGS_TO=""

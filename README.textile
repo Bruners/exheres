@@ -1,20 +1,20 @@
 Packages that should be in this repository
 
 * app-cdr
-** xfburn
+** xfburn - _Xfburn CD/DVD burning tool from xfce patched with gio/udev support_
 * media-libs
-** gmtk
+** gmtk - _Library for gnome-mplayer and gecko-mediaplayer_
 * media-sound
-** mangler
-** mumble
-** spotify
+** mangler - _An open source VOIP client capable of connecting to Ventrilo 3.x servers_
+** mumble - _Mumble is an open source, low-latency, high quality voice chat software_
+** spotify - _Music streaming service_
 * sys-sound
-** oss
+** oss - _Open Sound System v4_
 * x11-apps
-** trayer-srg
+** trayer-srg - _trayer-srg is a lightweight GTK2-based systray for UNIX desktop_
 * x11-libs
-** libaosd
+** libaosd - _An advanced on screen display (OSD) library_
 * x11-themes
-** awoken-icon-theme
-** gtk-engines-unico
-** omg-suite-theme
+** awoken-icon-theme - _AwOken icon theme_
+** gtk-engines-unico - _The Unico Gtk+ 3 Theming Engine_
+** omg-suite-theme - _OMG Suite - the dark GTK theme that rocks_

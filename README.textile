@@ -2,6 +2,8 @@ Packages that should be in this repository
 
 * app-cdr
 ** xfburn
+* media-libs
+** gmtk
 * media-sound
 ** mangler
 ** mumble

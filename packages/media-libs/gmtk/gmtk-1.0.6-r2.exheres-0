@@ -1,7 +1,7 @@
 # Copyright 2012 Lasse Brun
 # Distributed under the terms of the GNU General Public License v2
 
-require googlecode [ suffix=tar.gz ]
+require googlecode [ suffix=tar.gz ] gsettings
 
 SUMMARY="Library for gnome-mplayer and gecko-mediaplayer"
 DESCRIPTION="

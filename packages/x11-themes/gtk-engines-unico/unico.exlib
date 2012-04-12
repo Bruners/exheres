@@ -1,0 +1,37 @@
+# Copyright 2012 Lasse Brun <bruners@gmail.com>
+# Distributed under the terms of the GNU General Public License v2
+
+MY_PN=unico
+require launchpad [ project=${MY_PN} pnv=${MY_PN}-${PV} ]
+
+SUMMARY="The Unico Gtk+ 3 Theming Engine"
+DESCRIPTION="
+Unico is a Gtk+ engine that aims to be the more complete yet powerful theming engine for Gtk+ 3.0
+and newer. It’s the first Gtk+ engine written with Gtk+ style context APIs in mind, using CSS as first class
+citizen.
+"
+LICENCES="LGPL-3"
+DEPENDENCIES="
+    build:
+        dev-util/pkg-config
+    build+run:
+        dev-libs/glib:2[>=2.26.0]
+        x11-libs/cairo[>=1.10]
+    suggestion:
+        x11-themes/omg-suite-theme
+"
+
+if ever at_least 1.0.2; then
+    DEPENDENCIES+="
+        build+run:
+            x11-libs/gtk+:3[>=3.3.14]"
+else
+    DEPENDENCIES+="
+        build+run:
+            x11-libs/gtk+:3[>=3.1.10]"
+fi
+
+BUGS_TO="bruners@gmail.com"
+
+DEFAULT_SRC_CONFIGURE_PARAMS=( --disable-debug --disable-maintainer-flags )
+

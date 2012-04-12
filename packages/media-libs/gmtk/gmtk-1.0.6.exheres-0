@@ -1,0 +1,48 @@
+# Copyright 2012 Lasse Brun
+# Distributed under the terms of the GNU General Public License v2
+
+SUMMARY="Library for gnome-mplayer and gecko-mediaplayer"
+DESCRIPTION="
+gnome-mplayer toolkit, gmtk includes:
+libgmlib - a set of functions that support non-graphical operations
+libgmtk - a set of gtk widgets to use with gnome-mplayer
+"
+HOMEPAGE="http://code.google.com/p/gmtk/"
+DOWNLOADS="http://${PN}.googlecode.com/files/${PNV}.tar.gz"
+
+LICENCES="GPL-2"
+SLOT="0"
+PLATFORMS="~amd64"
+MYOPTIONS="
+    alsa
+    pulseaudio
+"
+
+DEPENDENCIES="
+    build:
+        dev-util/intltool
+        dev-util/pkg-config
+        sys-devel/gettext
+    build+run:
+        x11-libs/gtk+:3
+        x11-libs/libX11
+    suggestions:
+        alsa? ( sys-sound/alsa-lib )
+        pulseaudo? ( media-sound/pulseaudio )
+"
+
+BUGS_TO=""
+
+DEFAULT_SRC_CONFIGURE_PARAMS=(
+    '--disable-static'
+    '--disable-gconf'
+    '--disable-gsettings'
+    '--enable-gtk3'
+    '--enable-keystore'
+    '--with-gio'
+)
+DEFAULT_SRC_CONFIGURE_OPTION_WITHS=(
+    alsa
+    pulseaudio
+)
+

@@ -7,6 +7,8 @@ Packages that should be in this repository
 * media-sound
 ** *mangler* - _An open source VOIP client capable of connecting to Ventrilo 3.x servers_
 ** *mumble* - _Mumble is an open source, low-latency, high quality voice chat software_
+* net-www
+** *gecko-mediaplayer* - _A Firefox plugin to play media off the net using gnome-mplayer_
 ** *spotify* - _Music streaming service_
 * sys-sound
 ** *oss* - _Open Sound System v4_

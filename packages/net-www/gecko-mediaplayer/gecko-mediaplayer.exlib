@@ -1,20 +1,28 @@
 # Copyright 2010 Julien Pivotto <roidelapluie@gmail.com>
+# Copyright 2012 Lasse Brun <bruners@gmail.com>
 # Distributed under the terms of the GNU General Public License v2
 
-require googlecode [ suffix=tar.gz ]
+require gsettings googlecode [ suffix=tar.gz ]
 
-SUMMARY="A Firefox plugin to play media off the net using gnome-mplayer"
+SUMMARY="A browser plugin to play media with gnome-mplayer"
+DESCRIPTION="
+Gecko Media Player is a browser plugin that uses GNOME MPlayer to play media in a browser.
+It should work with all browsers on Unix-ish systemsi and use the NS4 API (Firefox, Opera, etc.).
+"
 
 LICENCES="GPL-2"
 SLOT="0"
 
 DEPENDENCIES="
+    build:
+        dev-util/pkg-config[>=0.9.0]
     build+run:
         dev-libs/glib:2[>=2.14]
-        dev-libs/xulrunner
+        dev-libs/xulrunner[>=2.0]
         dev-libs/nspr
         dev-libs/dbus-glib[>=0.70]
         media-libs/gmtk
         media-video/gnome-mplayer[>=${PV}]
+        net-misc/curl
 "
 

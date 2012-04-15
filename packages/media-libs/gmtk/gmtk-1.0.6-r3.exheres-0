@@ -20,7 +20,7 @@ MYOPTIONS="
 
 DEPENDENCIES="
     build:
-        dev-lang/perl[>=5.8.1]
+        dev-lang/perl:*[>=5.8.1]
         dev-util/intltool[>=0.35.0]
         dev-util/pkg-config[>=0.16]
         sys-devel/gettext

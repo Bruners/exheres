@@ -4,6 +4,7 @@ Packages that should be in this repository
 ** *xfburn* - _Xfburn CD/DVD burning tool from xfce patched with gio/udev support_
 * media-libs
 ** *gmtk* - _Library for gnome-mplayer and gecko-mediaplayer_
+** *gsm* - _GSM 06.10 lossy speech compression library_
 * media-sound
 ** *mangler* - _An open source VOIP client capable of connecting to Ventrilo 3.x servers_
 ** *mumble* - _Mumble is an open source, low-latency, high quality voice chat software_

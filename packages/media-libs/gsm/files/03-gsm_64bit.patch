@@ -1,0 +1,27 @@
+From 91f4de169335375c2a05e6d3b24568144dcbebae Mon Sep 17 00:00:00 2001
+From: Lasse Brun <bruners@gmail.com>
+Date: Tue, 15 May 2012 23:10:41 +0200
+Subject: [PATCH] Apply patch gsm-1.0.12-64bit.patch from gentoo
+---
+ inc/private.h |    4 ++--
+ 1 file changed, 2 insertions(+), 2 deletions(-)
+
+diff --git a/inc/private.h b/inc/private.h
+index 0c94255..bf5a12d 100644
+--- a/inc/private.h
++++ b/inc/private.h
+@@ -10,10 +10,10 @@
+ #define	PRIVATE_H
+ 
+ typedef short			word;		/* 16 bit signed int	*/
+-typedef long			longword;	/* 32 bit signed int	*/
++typedef int			longword;	/* 32 bit signed int	*/
+ 
+ typedef unsigned short		uword;		/* unsigned word	*/
+-typedef unsigned long		ulongword;	/* unsigned longword	*/
++typedef unsigned int		ulongword;	/* unsigned longword	*/
+ 
+ struct gsm_state {
+ 
+-- 
+1.7.10.2

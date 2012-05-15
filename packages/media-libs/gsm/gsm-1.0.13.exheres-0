@@ -1,0 +1,50 @@
+# Copyright 2012 Lasse Brun <bruners@gmail.com>
+# Distributed under the terms of the GNU General Public License v2
+# Based in part upon 'gsm-1.0.13.ebuild' from Gentoo, which is:
+#     Copyright 1999-2011 Gentoo Foundation
+
+SUMMARY="GSM 06.10 lossy speech compression library"
+DESCRIPTION="
+An implementation of the European GSM 06.10 provisional standard for full-rate speech transcoding,
+prI-ETS 300 036, which uses RPE/LTP (residual pulse excitation/long term prediction) coding at 13 kbit/s.
+
+GSM 06.10 compresses frames of 160 13-bit samples (8 kHz sampling rate, i.e. a frame rate of 50 Hz) into 260 bits
+The quality of the algorithm is good enough for reliable speaker recognition, even music
+"
+HOMEPAGE="http://www.quut.com/${PN}"
+DOWNLOADS="${HOMEPAGE}/${PNV}.tar.gz"
+
+LICENCES="GSM-1.0.13 [[ note = [ as-is ] ]]"
+SLOT="0"
+PLATFORMS="~amd64"
+
+WORK="${WORKBASE}/${PN}-$(ever replace 2 '-pl' ${PV})"
+
+DEFAULT_SRC_PREPARE_PATCHES=(
+    # Patch Makefile to build what we need
+    "${FILES}"/01-${PN}_makefile.patch
+
+    # Apply patches from gentoo
+    "${FILES}"/02-${PN}_memcpy.patch
+    "${FILES}"/03-${PN}_64bit.patch
+)
+
+src_test() {
+    emake addtst
+}
+
+src_install() {
+    dodir /usr/bin /usr/${LIBDIR} /usr/include/gsm /usr/include/libgsm /usr/share/man/man{1,3}
+
+    emake INSTALL_ROOT="${IMAGE}"/usr \
+        GSM_INSTALL_LIB="${IMAGE}"/usr/${LIBDIR} \
+        GSM_INSTALL_INC="${IMAGE}"/usr/include/gsm \
+        GSM_INSTALL_MAN="${IMAGE}"/usr/share/man/man3 \
+        TOAST_INSTALL_MAN="${IMAGE}"/usr/share/man/man1 \
+        install
+
+    dosym ../gsm/gsm.h /usr/include/libgsm/gsm.h
+
+    emagicdocs
+}
+

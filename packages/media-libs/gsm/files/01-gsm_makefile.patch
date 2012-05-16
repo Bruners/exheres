@@ -1,3 +1,7 @@
+Source: From scratch based on patches from gentoo, debian and slackware
+Upstream: Supported by upstream
+Reason: This is the only way to configure the install
+
 From a99c03b4d0886ef8599a632ab705da024f44df33 Mon Sep 17 00:00:00 2001
 From: Lasse Brun <bruners@gmail.com>
 Date: Tue, 15 May 2012 22:47:48 +0200

@@ -1,9 +1,12 @@
+Source: from Gentoo
+Upstream: No
+Reason: Removes build warning: incompatible implicit declaration of built-in function 'memcpy'
+
 From a55942a1bdcfa8b7d2365910e50ea9f28fb64ce6 Mon Sep 17 00:00:00 2001
 From: Lasse Brun <bruners@gmail.com>
 Date: Tue, 15 May 2012 23:01:33 +0200
 Subject: [PATCH] Apply patch gsm-1.0.12-memcpy.patch from gentoo
 
-Removes build warning: incompatible implicit declaration of built-in function 'memcpy'
 ---
  src/code.c |    1 +
  1 file changed, 1 insertion(+)

@@ -1,7 +1,12 @@
+Source: Written by Marcin Slusarz, from Gentoo
+Upstream: Supported by upstream, more info on http://quut.com/gsm/ Porting to a DEC Alpha
+Reason: Fixes math routine test. Gentoo Bug 86593 - gsm is broken on amd64 when GSM_OPT_FAST is enabled.
+
 From 91f4de169335375c2a05e6d3b24568144dcbebae Mon Sep 17 00:00:00 2001
 From: Lasse Brun <bruners@gmail.com>
 Date: Tue, 15 May 2012 23:10:41 +0200
 Subject: [PATCH] Apply patch gsm-1.0.12-64bit.patch from gentoo
+
 ---
  inc/private.h |    4 ++--
  1 file changed, 2 insertions(+), 2 deletions(-)

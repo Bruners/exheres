@@ -25,10 +25,10 @@ DEPENDENCIES="
         dev-lang/perl:*[>=5.8.1]
         dev-libs/glib:2[>=2.22.0]
         media-plugins/gst-plugins-base:0.10[>=0.10.2]
-        sys-fs/udev[glib][>=145]
         x11-libs/gtk+:2[>=2.10.0]
         xfce-base/exo[>=0.6.0]
         xfce-base/libxfce4ui[>=4.8.0]
+        || ( sys-fs/udev[glib][>=145] sys-apps/systemd[~scm] )
     suggestion:
         (
             media-plugins/gst-ffmpeg
@@ -53,5 +53,10 @@ DEFAULT_SRC_PREPARE_PATCHES=(
     # Apply patch to solve Xfburn segfaulting when adding new directories
     # More info here https://bugzilla.xfce.org/show_bug.cgi?id=6805
     -p1 "${FILES}/xfburn-${PV}-empty-dir-segfault.patch"
+
+    # Apply patch to build against latest glib 2.32
+    # http://developer.gnome.org/glib/2.32/glib-Deprecated-Thread-APIs.html#g-thread-init
+    # More info https://bugzilla.xfce.org/show_bug.cgi?id=7758
+    -p1 "${FILES}/xfburn-0.4.3-glib.patch"
 )
 

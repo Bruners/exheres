@@ -28,7 +28,7 @@ DEPENDENCIES="
         x11-libs/gtk+:2[>=2.10.0]
         xfce-base/exo[>=0.6.0]
         xfce-base/libxfce4ui[>=4.8.0]
-        || ( sys-fs/udev[glib][>=145] sys-apps/systemd[~scm] )
+        || ( sys-fs/udev[glib] sys-apps/systemd )
     suggestion:
         (
             media-plugins/gst-ffmpeg

@@ -11,6 +11,8 @@ Packages that should be in this repository
 ** *mumble* - _Mumble is an open source, low-latency, high quality voice chat software_
 * net-www
 ** *gecko-mediaplayer* - _A browser plugin to play media with gnome-mplayer_
+* sys-boot
+** *unetbootin* - _GUI for making bootable USB drives_
 * sys-sound
 ** *oss* - _Open Sound System v4_
 * x11-apps

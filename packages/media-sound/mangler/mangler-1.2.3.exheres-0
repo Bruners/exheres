@@ -3,7 +3,7 @@
 
 SUMMARY="An open source VOIP client capable of connecting to Ventrilo 3.x servers"
 DESCRIPTION="Provides all standard functions found in the Windows client and some more"
-HOMEPAGE="http://www,mangler.org"
+HOMEPAGE="http://www.mangler.org"
 DOWNLOADS="${HOMEPAGE}/downloads/${PNV}.tar.bz2"
 
 LICENCES="

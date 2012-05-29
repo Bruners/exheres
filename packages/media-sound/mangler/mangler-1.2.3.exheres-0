@@ -24,7 +24,7 @@ DEPENDENCIES="
         x11-libs/gtk+:2[>=2.16]
         x11-libs/libX11
         x11-libs/libXi
-        celt? ( media-libs/celt:0.7.1 )
+        opus? ( media-libs/opus )
         dbus? ( dev-libs/dbus-glib:1[>=0.80] )
         espeak? ( app-speech/espeak )
         g15? ( app-misc/g15daemon )
@@ -38,21 +38,43 @@ DEPENDENCIES="
         xosd? ( x11-libs/xosd )
     suggestion:
         dbus? (
-            gnome-desktop/rhythmbox [[ description = [ Mangler is capable of showing now-playing info from Rhytmbox ] ]]
-            media-sound/amarok [[ description = [ Mangler is capable of showing now-playing info from Amarok ] ]]
-            media-sound/mpd [[ description = [ Mangler is capable of showing now-playing info from MPD ] ]]
+            gnome-desktop/rhythmbox [[
+                description = [ Mangler is capable of showing now-playing info from Rhytmbox ]
+            ]]
+            media-sound/amarok [[
+                description = [ Mangler is capable of showing now-playing info from Amarok ]
+            ]]
+            media-sound/mpd [[
+                description = [ Mangler is capable of showing now-playing info from MPD ]
+            ]]
         )
-        media-sound/pulseaudio [[ description = [ Enables Mangler to use Pulseaudio for input/output audio ] ]]
-        sys-sound/alsa-lib [[ description = [ Enables Mangler to use ALSA for input/output audio ] ]]
-        sys-sound/oss [[ description = [ Enables Mangler to use OSSv4 for input/output audio ] ]]
+        media-sound/pulseaudio [[
+            description = [ Enables Mangler to use Pulseaudio for input/output audio ]
+        ]]
+        sys-sound/alsa-lib [[
+            description = [ Enables Mangler to use ALSA for input/output audio ]
+        ]]
+        sys-sound/oss [[
+            description = [ Enables Mangler to use OSSv4 for input/output audio ]
+        ]]
 "
 
 MYOPTIONS="
-    celt [[ description = [ Enables Mangler to use CELT, not officially supported by Flagship ] ]]
-    dbus [[ description = [ Enables the now-playing feature for media players, known to work with MPD, Amarok and Rhytmbox ] ]]
-    espeak [[ description = [ Enable text-to-speech for Mangler ] ]]
-    g15 [[ description = [ Show information on Logitech G15 keyboards ] ]]
-    gsm [[ description = [ Enable support for the GSM 6.10 audio codec ] ]]
+    opus [[
+        description = [ Use Opus' CELT codec (replacing channel codecs truespeech and lernout & hauspie) ]
+    ]]
+    dbus [[
+        description = [ Enables the now-playing feature for media players, known to work with MPD, Amarok and Rhytmbox ]
+    ]]
+    espeak [[
+        description = [ Enable text-to-speech for Mangler ]
+    ]]
+    g15 [[
+        description = [ Show information on Logitech G15 keyboards ]
+    ]]
+    gsm [[
+        description = [ Enable support for the GSM 6.10 audio codec ]
+    ]]
     jukebox [[
         description = [ Builds mangler-jukebox, needs mpg123 to read and stream Mp3 files. NOT SUPPORTED BY UPSTREAM ]
         requires = [ speex gsm ]
@@ -64,7 +86,7 @@ MYOPTIONS="
 BUGS_TO="bruners@gmail.com"
 UPSTREAM_CHANGELOG="http://svn.mangler.org/mangler/tags/${PV}/ChangeLog"
 DEFAULT_SRC_CONFIGURE_OPTION_ENABLES=(
-    celt
+    opus
     dbus
     espeak
     g15

@@ -5,6 +5,6 @@ SCM_REPOSITORY="git://git.opus-codec.org/opus.git"
 
 require opus scm-git autotools [ supported_autoconf=[ 2.5 ] supported_automake=[ 1.11 1.12 ] ]
 
-SLOT="0"
+SLOT="1.0"
 PLATFORMS="~amd64"
 

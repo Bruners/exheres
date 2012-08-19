@@ -4,6 +4,6 @@
 require opus
 
 PLATFORMS="~amd64"
-SLOT="0"
+SLOT="0.9"
 DOWNLOADS="http://downloads.xiph.org/releases/${PN}/${PNV}.tar.gz"
 

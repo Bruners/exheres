@@ -17,8 +17,8 @@ TeamSpeak. People tend to simplify things, so when they talk about Mumble they e
 LICENCES="BSD-2"
 SLOT="0"
 PLATFORMS="~amd64"
-MYOPTIONS="alsa avahi pulseaudio
-    server [[ description = [ Build the mumble server called murmurd ] ]]
+MYOPTIONS="alsa avahi dbus pulseaudio
+    server [[ description = [ Build the mumble server called murmurd ] requires = [ dbus ] ]]
     systemd [[ requires = [ server ] ]]
 "
 
@@ -33,7 +33,7 @@ DEPENDENCIES="
         media-libs/speex[>=1.2_rc1]
         x11-libs/libX11
         x11-libs/libXi
-        x11-libs/qt:4[dbus][opengl][sql][sqlite][ssl]
+        x11-libs/qt:4[dbus?][opengl][sql][sqlite][ssl]
         alsa? ( sys-sound/alsa-lib )
         avahi? ( net-dns/avahi[dns_sd] )
         pulseaudio? ( media-sound/pulseaudio )
@@ -56,8 +56,9 @@ src_configure() {
         no-update                  # don't check for new versions
     )
 
-    option alsa || config+=( no-alsa )
+    option alsa  || config+=( no-alsa )
     option avahi || config+=( no-bonjour )
+    option dbus  || config+=( no-dbus )
     option pulseaudio || config+=( no-pulseaudio )
     option server || config+=( no-server )
 

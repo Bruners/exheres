@@ -65,7 +65,7 @@ index cfab74f..f7455de 100644
  		@-echo $(ROOT): Done.
  
  tst:		$(TST)/lin2cod $(TST)/cod2lin $(TOAST) $(TST)/test-result
-@@ -299,24 +299,23 @@ install:	toastinstall gsminstall
+@@ -299,24 +299,24 @@ install:	toastinstall gsminstall
  
  # The basic API: libgsm
  
@@ -75,6 +75,7 @@ index cfab74f..f7455de 100644
 -		$(RANLIB) $(LIBGSM)
 -
 +$(LIBGSMSO): $(LIB) $(GSM_OBJECTS)
++	-rm $(RMFLAGS) $(LIBGSMSO) $(LIBGSMSO).1
 +	$(LD) -shared -Wl,-soname,libgsm.so.1 -o $@.1.0.13 $(GSM_OBJECTS)
 +	$(LN) libgsm.so.1.0.13 $(LIBGSMSO).1
 +	$(LN) libgsm.so.1.0.13 $(LIBGSMSO)

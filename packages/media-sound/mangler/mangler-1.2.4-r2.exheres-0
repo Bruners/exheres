@@ -28,7 +28,7 @@ DEPENDENCIES="
         dbus? ( dev-libs/dbus-glib:1[>=0.80] )
         espeak? ( app-speech/espeak )
         g15? ( app-misc/g15daemon )
-        gsm? ( media-libs/gsm[=1.0.13] )
+        gsm? ( media-libs/gsm[>=1.0.13] )
         jukebox? (
             media-sound/mpg123
             media-libs/flac

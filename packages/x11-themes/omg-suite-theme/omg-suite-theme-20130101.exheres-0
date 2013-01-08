@@ -53,5 +53,5 @@ src_install() {
         doins -r "${THEME}"
     done
     doins OMG.emerald
-    doins Left-Buttons-Metacity
+    doins OMG_Left_Buttons
 }

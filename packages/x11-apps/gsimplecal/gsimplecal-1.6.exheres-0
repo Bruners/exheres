@@ -1,0 +1,28 @@
+# Copyright 2013 Lasse Brun <bruners@gmail.com>
+# Distributed under the terms of the GNU General Public License v2
+
+GITHUB_REVISION="6aa0966"
+require autotools [ supported_autoconf=[ 2.5 ] supported_automake=[ 1.11 1.12 ] ]
+require github [ user=dmedvinsky ]
+
+SUMMARY="Gsimplecal is a lightweight calendar applet written in C++ using GTK2."
+DESCRIPTION="
+Intentionally made for use with the tint2 panel in a openbox environment launched upon clicking the
+clock, but can be used as a standalone calendar app.
+Can be configured to not only show the calendar, but also display
+multiple clocks for different world timezones.
+"
+DOWNLOADS="${HOMEPAGE}/archive/v${PV}.tar.gz"
+LICENCES="BSD"
+SLOT="0"
+PLATFORMS="~amd64"
+
+WORK="${WORKBASE}/${PN}-${PV}"
+
+DEPENDENCIES="
+    build+run:
+        x11-libs/gtk+:2
+"
+
+BUGS_TO="bruners@gmail.com"
+

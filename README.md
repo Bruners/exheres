@@ -1,4 +1,5 @@
 ## Packages that should be in this repository
+
 * app-cdr
 ** *xfburn* - _Xfburn CD/DVD burning tool from xfce patched with gio/udev support_
 * media-libs
@@ -25,5 +26,6 @@
 ** *omg-suite-theme* - _OMG Suite - the dark GTK theme that rocks_
 
 ## Donations
+
 Bitcoin
 * 14Daior4aJ4kp3tHRQWTxdjM2pZmE2uJxL

@@ -23,6 +23,7 @@ sys-sound/
 x11-apps/
 * **trayer-srg** - _trayer-srg is a lightweight GTK2-based systray for UNIX desktop_
 * **gsimplecal** - _A simple calendar gtk+ app written in C++_
+* **xorg-launch-helper** - _Xorg launcher for user sessions in systemd_
 
 x11-libs/
 * **libaosd** - _An advanced on screen display (OSD) library_

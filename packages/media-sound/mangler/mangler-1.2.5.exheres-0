@@ -1,4 +1,4 @@
-# Copyright 2012 Lasse Brun <bruners@gmail.com>
+# Copyright 2012,2013 Lasse Brun <bruners@gmail.com>
 # Distributed under the terms of the GNU General Public License v2
 
 SUMMARY="An open source VOIP client capable of connecting to Ventrilo 3.x servers"

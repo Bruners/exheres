@@ -2,7 +2,7 @@
 # Distributed under the terms of the GNU General Public License v2
 
 GITHUB_REVISION="6aa0966"
-require autotools [ supported_autoconf=[ 2.5 ] supported_automake=[ 1.11 1.12 ] ]
+require autotools [ supported_autoconf=[ 2.5 ] supported_automake=[ 1.12 1.11 ] ]
 require github [ user=dmedvinsky ]
 
 SUMMARY="Gsimplecal is a lightweight calendar applet written in C++ using GTK2."

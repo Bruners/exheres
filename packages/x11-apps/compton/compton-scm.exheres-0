@@ -1,0 +1,77 @@
+# Copyright 2013 Lasse Brun <bruners@gmail.com>
+# Distributed under the terms of the GNU General Public License v2
+
+GITHUB_BRANCH="richardgv-dev"
+require github [ user=chjj ]
+
+SUMMARY="Compton is a X compositing manager, forked of xcompmgr-dana and xcompgmr"
+LICENCES="MIT"
+SLOT="0"
+PLATFORMS="~amd64"
+MYOPTIONS="
+    dbus
+    libconfig
+    opengl
+"
+
+DEPENDENCIES="
+    build:
+        app-doc/asciidoc
+        virtual/pkg-config
+        x11-proto/xproto
+    build+run:
+        dev-libs/pcre
+        x11-libs/libX11
+        x11-libs/libXcomposite
+        x11-libs/libXdamage
+        x11-libs/libXext
+        x11-libs/libXfixes
+        x11-libs/libXrandr
+        x11-libs/libXrender
+    run:
+        app-shells/bash
+        x11-apps/xprop
+        x11-apps/xwininfo
+        dbus? ( sys-apps/dbus )
+        libconfig? ( dev-libs/libconfig )
+        opengl? (
+            x11-dri/mesa
+        )
+"
+
+BUGS_TO="bruners@gmail.com"
+
+src_compile() {
+    config=(
+        NO_REGEX_PCRE=false
+        NO_VSYNC_DRM=false
+    )
+    # default enables and disables
+    option dbus || config+=( NO_DBUS=true )
+    option libconfig || config+=( NO_LIBCONFIG=true )
+    option opengl || config+=( NO_VSYNC_OPENGL=true NO_VSYNC_DRM=true )
+
+    emake ${config[*]} ${PN}
+
+    # Build man pages
+    emake ${config[*]} docs
+}
+
+src_install() {
+    dobin "${PN}" bin/"${PN}"-trans
+
+    doman man/compton.1 man/compton-trans.1
+
+    dodoc -r man/compton.1.html man/compton-trans.1.html
+
+    dodoc README.md compton.sample.conf
+    option dbus && dodoc dbus-examples/cdbus-driver.sh
+}
+
+pkg_postinst() {
+    einfo "Sample configuration/tools for ${PN} can be found in /usr/share/doc/${PNV}"
+    einfo "compton.sample.conf - Sourced from XDG directories \$XDG_CONFIG_HOME}/${PN}.conf \$HOME}/.${PN}.conf"
+    option dbus &&
+        einfo "cdbus-driver.sh - A script to control ${PN} via dbus"
+}
+

@@ -21,6 +21,7 @@ sys-sound/
 * **oss** - _Open Sound System v4_
 
 x11-apps/
+* **compton** - _Compton is a X compositing manager, forked of xcompmgr-dana and xcompgmr_
 * **trayer-srg** - _trayer-srg is a lightweight GTK2-based systray for UNIX desktop_
 * **gsimplecal** - _A simple calendar gtk+ app written in C++_
 * **xorg-launch-helper** - _Xorg launcher for user sessions in systemd_

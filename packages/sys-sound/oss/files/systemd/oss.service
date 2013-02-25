@@ -1,12 +1,17 @@
+# Copyright 2013 Lasse Brun <bruners@gmail.com>
+# Distributed under the terms of the GNU General Public License v2
+
 [Unit]
-Description=Open Sound System v4
-Before=sound.target
+Description=Open Sound System v4.x kernel moduless
+Documentation=man:soundon(1) man:ossinfo(1)
+Documentation=http://manuals.opensound.com
+Before=sound.target shutdown.target
 
 [Service]
 Type=oneshot
 RemainAfterExit=yes
 ExecStart=/usr/sbin/soundon
-ExecStart=/usr/sbin/savemixer -L
+ExecStartPost=/usr/sbin/savemixer -L
 ExecStop=/usr/sbin/soundoff
 
 [Install]

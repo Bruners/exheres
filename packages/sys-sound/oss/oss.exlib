@@ -54,5 +54,19 @@ src_install() {
     edo rmdir prototype/usr/${LIBDIR}/oss/save/
     edo cp -r prototype/* "${IMAGE}"
     install_systemd_files
+
+    # install desktop file for ossxmix
+    insinto /usr/share/applications
+    hereins ossxmix.desktop <<EOF
+[Desktop Entry]
+Name=Open Sound System Mixer
+Comment=Select audio device and adjust volumes
+GenericName=Sound Mixer
+Exec=ossxmix
+Icon=audio-card
+Categories=GTK;AudioVideo;Audio;Mixer;Player;
+Terminal=false
+Type=Application
+EOF
 }
 

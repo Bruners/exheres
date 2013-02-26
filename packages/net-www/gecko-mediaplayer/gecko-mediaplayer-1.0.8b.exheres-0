@@ -1,0 +1,8 @@
+# Copyright 2010 Julien Pivotto <roidelapluie@gmail.com>
+# Copyright 2012 Lasse Brun <bruners@gmail.com>
+# Distributed under the terms of the GNU General Public License v2
+
+require gecko-mediaplayer
+
+PLATFORMS="~amd64 ~x86"
+

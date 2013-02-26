@@ -15,7 +15,7 @@ SLOT="0"
 
 DEPENDENCIES="
     build:
-        dev-util/pkg-config[>=0.9.0]
+        virtual/pkg-config
     build+run:
         dev-libs/glib:2[>=2.14]
         dev-libs/xulrunner[>=2.0]
@@ -25,4 +25,3 @@ DEPENDENCIES="
         media-video/gnome-mplayer[>=1.0.4][dbus]
         net-misc/curl
 "
-

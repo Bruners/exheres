@@ -16,8 +16,10 @@ require systemd-service
 
 LICENCES="GPL-2"
 
-MYOPTIONS=""
-
+MYOPTIONS="
+    oss_hdaudio [[ description = [ Build with --only-drv=oss_hdaudio modules ] ]]
+    oss_usb [[ description = [ Build with --only-drv=oss_usb modules ] ]]
+"
 DEPENDENCIES="
     build+run:
         sys-kernel/linux-headers[>=2.6.0]
@@ -32,16 +34,29 @@ DEPENDENCIES="
 
 BUGS_TO="bruners@gmail.com"
 
+drv_config=""
+
 src_prepare() {
     # Change OSSLIBDIR in configure to be less static
     edo sed -i -e 's:OSSLIBDIR="/usr/lib/oss":OSSLIBDIR="/usr/${LIBDIR}/oss":' configure
+    expatch ${FILES}/fix-build-on-3.8-kernels.patch
+    expatch ${FILES}/etc-soundon.patch
 }
 
 src_configure() {
+    option oss_hdaudio && drv_config="oss_hdaudio,${drv_config}"
+    option oss_usb && drv_config="oss_usb,${drv_config}"
+
     # Make a tmp build dir from where we need to run the configure script
     edo mkdir "${WORKBASE}"/tmp
     edo cd "${WORKBASE}"/tmp
-    edo "${WORK}"/configure
+
+    if [ -z "${drv_config}" ]; then
+        edo "${WORK}"/configure
+    else
+        einfo "OSS will only build the following driver modules: ${drv_config}"
+        edo "${WORK}"/configure --only-drv="${drv_config}"
+    fi
 }
 
 src_compile() {
@@ -68,5 +83,9 @@ Categories=GTK;AudioVideo;Audio;Mixer;Player;
 Terminal=false
 Type=Application
 EOF
+}
+
+pkg_postinst() {
+    einfo "The /usr/sbin/soundon script will run \"soundon.user\" from \"/etc/oss/\" if found an executable"
 }
 

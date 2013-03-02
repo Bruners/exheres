@@ -1,0 +1,30 @@
+From c5c8605c2b01f54a9283670c600c6deb991a206b Mon Sep 17 00:00:00 2001
+From: Lasse Brun <bruners@gmail.com>
+Date: Sat, 2 Mar 2013 12:24:43 +0100
+Subject: [PATCH] Make soundon use soundon.user from /etc/oss/
+
+---
+ setup/Linux/sbin/soundon | 6 +++---
+ 1 file changed, 3 insertions(+), 3 deletions(-)
+
+diff --git a/setup/Linux/sbin/soundon b/setup/Linux/sbin/soundon
+index e868fd6..4e53a72 100755
+--- a/setup/Linux/sbin/soundon
++++ b/setup/Linux/sbin/soundon
+@@ -312,10 +312,10 @@ then
+   ln -sf $OSSLIBDIR/lib/libflashsupport_32.so /usr/lib/libflashsupport.so
+ fi
+ 
+-if test -x $OSSLIBDIR/soundon.user
++if test -x /etc/oss/soundon.user
+ then
+-  echo Running $OSSLIBDIR/soundon.user >> $LOG
+-  $OSSLIBDIR/soundon.user >> $LOG 2>&1
++    echo Running /etc/oss/sound.user >> $LOG
++    /etc/oss/soundon.user >> $LOG 2>&1
+ fi
+ 
+ if test "`ossinfo -g|grep TRIAL` " != " "
+-- 
+1.8.1.3
+

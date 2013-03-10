@@ -17,8 +17,12 @@ require systemd-service
 LICENCES="GPL-2"
 
 MYOPTIONS="
-    oss_hdaudio [[ description = [ Build with --only-drv=oss_hdaudio modules ] ]]
-    oss_usb [[ description = [ Build with --only-drv=oss_usb modules ] ]]
+    oss_hdaudio [[
+        description = [ Build selected only, Enable support for Intel High Definition Audio chips ]
+    ]]
+    oss_usb [[
+        description = [ Build selected only, Enable support for Generic USB audio/MIDI devices ]
+    ]]
 "
 DEPENDENCIES="
     build+run:
@@ -34,7 +38,10 @@ DEPENDENCIES="
 
 BUGS_TO="bruners@gmail.com"
 
-drv_config=""
+OSS_MODULES=(
+    oss_hdaudio
+    oss_usb
+)
 
 src_prepare() {
     # Change OSSLIBDIR in configure to be less static
@@ -44,18 +51,20 @@ src_prepare() {
 }
 
 src_configure() {
-    option oss_hdaudio && drv_config="oss_hdaudio,${drv_config}"
-    option oss_usb && drv_config="oss_usb,${drv_config}"
+    local config=""
+    for module in "${OSS_MODULES[@]}"; do
+        option ${module} && config+=${module},
+    done
 
     # Make a tmp build dir from where we need to run the configure script
     edo mkdir "${WORKBASE}"/tmp
     edo cd "${WORKBASE}"/tmp
 
-    if [ -z "${drv_config}" ]; then
+    if [[ -z "${config}" ]]; then
         edo "${WORK}"/configure
     else
-        einfo "OSS will only build the following driver modules: ${drv_config}"
-        edo "${WORK}"/configure --only-drv="${drv_config}"
+        einfo "Disabling all OSS modules except ${config}"
+        edo "${WORK}"/configure --only-drv="${config}"
     fi
 }
 

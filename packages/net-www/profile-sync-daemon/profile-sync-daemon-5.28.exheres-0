@@ -1,0 +1,45 @@
+# Copyright 2013 Lasse Brun <bruners@gmail.com>
+# Distributed under the terms of the GNU General Public License v2
+
+GITHUB_REVISION="4f2cb1b"
+require github [ user=graysky2 ]
+
+SUMMARY="Symlinks and syncs browser profile dirs to RAM speeding-up browsers"
+DESCRIPTION="
+Profile-sync-daemon (psd) is a tiny pseudo-daemon designed to manage your browser's profile in tmpfs
+and to periodically sync it back to your physical disc (HDD/SSD). This is accomplished via a
+symlinking step and an innovative use of rsync to maintain back-up and synchronization between the
+two. One of the major design goals of psd is a completely transparent user experience.
+"
+HOMEPAGE="https://wiki.archlinux.org/index.php/Profile-sync-daemon"
+
+LICENCES="as-is"
+SLOT="0"
+PLATFORMS="~amd64"
+
+DEPENDENCIES="
+    build:
+        sys-process/cronbase
+        virtual/pkg-config
+    build+run:
+        sys-apps/systemd
+"
+
+UPSTREAM_DOCUMENTATION="
+    ${HOMEPAGE} [[ lang = en description = [ Github Repository ] ]]
+    https://wiki.archlinux.org/index.php/Profile-sync-daemon [[ lang = en description = [ Arch Linux Wiki ] ]]
+"
+
+BUGS_TO="bruners@gmail.com"
+
+src_prepare() {
+    default
+
+    pushd "${WORK}"
+    if [[ -f "${WORK}/Makefile.exherbo" ]] ; then
+        edo ln -s Makefile.exherbo Makefile
+    else
+        edo ln -s "${FILES}"/Makefile.exherbo Makefile
+    fi
+    popd
+}

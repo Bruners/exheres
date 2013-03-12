@@ -1,10 +1,10 @@
 # Copyright 2013 Lasse Brun <bruners@gmail.com>
 # Distributed under the terms of the GNU General Public License v2
 
-GITHUB_REVISION="4f2cb1b"
+GITHUB_REVISION="28d2f03"
 require github [ user=graysky2 ]
 
-SUMMARY="Symlinks and syncs browser profile dirs to RAM speeding-up browsers"
+SUMMARY="Symlinks and syncs browser profile dirs to tmpfs speeding-up browsers"
 DESCRIPTION="
 Profile-sync-daemon (psd) is a tiny pseudo-daemon designed to manage your browser's profile in tmpfs
 and to periodically sync it back to your physical disc (HDD/SSD). This is accomplished via a
@@ -34,10 +34,6 @@ src_prepare() {
     default
 
     pushd "${WORK}"
-    if [[ -f "${WORK}/Makefile.exherbo" ]] ; then
-        edo ln -s Makefile.exherbo Makefile
-    else
-        edo ln -s "${FILES}"/Makefile.exherbo Makefile
-    fi
+    edo ln -s Makefile.exherbo Makefile
     popd
 }

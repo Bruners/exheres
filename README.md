@@ -1,6 +1,6 @@
-## Packages that should be in this repository
+## Packages that should be in this repository ![zebrapig-22x22](https://f.cloud.github.com/assets/111137/250249/1c2ffefc-8b44-11e2-9097-2a0abb29783b.png)
 
-app-cdr/
+app-cdr/ 
 * **xfburn** - _Xfburn CD/DVD burning tool from xfce patched with gio/udev support_
 
 media-libs/
@@ -35,7 +35,7 @@ x11-themes/
 * **gtk-engines-unico** - _The Unico Gtk+ 3 Theming Engine_
 * **omg-suite-theme** - _OMG Suite - the dark GTK theme that rocks_
 
-## Donations
+## Donations ![zebrapig-22x22](https://f.cloud.github.com/assets/111137/250249/1c2ffefc-8b44-11e2-9097-2a0abb29783b.png)
 
 **Bitcoin**
 + 14Daior4aJ4kp3tHRQWTxdjM2pZmE2uJxL

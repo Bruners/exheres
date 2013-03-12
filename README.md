@@ -13,6 +13,7 @@ media-sound/
 
 net-www/
 * **gecko-mediaplayer** - _A browser plugin to play media with gnome-mplayer_
+* **profile-sync-daemon** - _Symlinks and syncs browser profile dirs to RAM speeding-up browsers_
 
 sys-boot/
 * **unetbootin** - _GUI for making bootable USB drives_

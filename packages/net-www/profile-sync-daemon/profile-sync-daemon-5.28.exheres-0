@@ -11,8 +11,6 @@ and to periodically sync it back to your physical disc (HDD/SSD). This is accomp
 symlinking step and an innovative use of rsync to maintain back-up and synchronization between the
 two. One of the major design goals of psd is a completely transparent user experience.
 "
-HOMEPAGE="https://wiki.archlinux.org/index.php/Profile-sync-daemon"
-
 LICENCES="as-is"
 SLOT="0"
 PLATFORMS="~amd64"

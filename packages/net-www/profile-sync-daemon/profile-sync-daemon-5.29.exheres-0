@@ -1,7 +1,7 @@
 # Copyright 2013 Lasse Brun <bruners@gmail.com>
 # Distributed under the terms of the GNU General Public License v2
 
-GITHUB_REVISION="28d2f03"
+GITHUB_REVISION="9cf98bd"
 require github [ user=graysky2 ]
 
 SUMMARY="Symlinks and syncs browser profile dirs to tmpfs speeding-up browsers"
@@ -17,7 +17,6 @@ PLATFORMS="~amd64"
 
 DEPENDENCIES="
     build:
-        sys-process/cronbase
         virtual/pkg-config
     build+run:
         sys-apps/systemd

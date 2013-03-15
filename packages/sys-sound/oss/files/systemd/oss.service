@@ -2,7 +2,7 @@
 # Distributed under the terms of the GNU General Public License v2
 
 [Unit]
-Description=Open Sound System v4.x kernel moduless
+Description=Open Sound System v4.x kernel modules
 Documentation=man:soundon(1) man:ossinfo(1)
 Documentation=http://manuals.opensound.com
 Before=sound.target shutdown.target

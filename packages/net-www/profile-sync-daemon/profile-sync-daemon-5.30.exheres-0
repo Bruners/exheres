@@ -1,7 +1,7 @@
 # Copyright 2013 Lasse Brun <bruners@gmail.com>
 # Distributed under the terms of the GNU General Public License v2
 
-GITHUB_REVISION="9cf98bd"
+GITHUB_REVISION="2434c65"
 require github [ user=graysky2 ]
 
 SUMMARY="Symlinks and syncs browser profile dirs to tmpfs speeding-up browsers"
@@ -26,6 +26,7 @@ UPSTREAM_DOCUMENTATION="
     ${HOMEPAGE} [[ lang = en description = [ Github Repository ] ]]
     https://wiki.archlinux.org/index.php/Profile-sync-daemon [[ lang = en description = [ Arch Linux Wiki ] ]]
 "
+UPSTREAM_CHANGELOG="https://github.com/graysky2/profile-sync-daemon/blob/master/CHANGELOG [[ lang = en ]]"
 
 BUGS_TO="bruners@gmail.com"
 

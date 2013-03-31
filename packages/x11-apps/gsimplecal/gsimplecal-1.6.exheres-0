@@ -1,7 +1,7 @@
 # Copyright 2013 Lasse Brun <bruners@gmail.com>
 # Distributed under the terms of the GNU General Public License v2
 
-GITHUB_REVISION="6aa0966"
+GITHUB_REVISION="v${PV}"
 require autotools [ supported_autoconf=[ 2.5 ] supported_automake=[ 1.12 1.11 ] ]
 require github [ user=dmedvinsky ]
 

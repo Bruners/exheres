@@ -5,6 +5,7 @@
 #     Copyright 1999-2010 Gentoo Foundation
 
 require qmake4 sourceforge [ suffix=tar.gz ] systemd-service [ systemd_files=[ murmurd.service ] ]
+require freedesktop-desktop
 
 SUMMARY="Mumble is an open source, low-latency, high quality voice chat software"
 DESCRIPTION="
@@ -24,9 +25,7 @@ MYOPTIONS="
     avahi
     bundled-opus    [[ description = [ Bundle the opus codec ] ]]
     bundled-speex   [[ description = [ Bundle the speex codec ] ]]
-    dbus            [[ description = [ Disable dbus support on the client ] ]]
-    no-overlay      [[ description = [ Disable the OSD overlay ] ]]
-    no-plugins      [[ description = [ Don't build plugins for games ] ]]
+    dbus
     optimize        [[ description = [ Build a heavily optimized version. (Untested!) ] ]]
     pulseaudio
     server          [[ description = [ Build the mumble server called murmurd ] requires = [ dbus ] ]]
@@ -39,6 +38,7 @@ DEPENDENCIES="
         x11-proto/inputproto
     build+run:
         dev-libs/boost
+        dev-libs/icu
         dev-libs/openssl
         dev-libs/protobuf
         media-libs/libsndfile
@@ -70,6 +70,7 @@ src_configure() {
         no-g15                     # don't include support for the g15 keyboard
         no-ice                     # disable remote scripting using ZeroC Ice (a RPC mechanism)
         no-portaudio               # don't include support for PortAudio
+        no-plugins                 # don't include plugins for games (windows)
         no-update                  # don't check for new versions
     )
     # Typical defaults
@@ -78,8 +79,6 @@ src_configure() {
     option bundled-opus || config+=( no-bundled-opus )
     option bundled-speex || config+=( no-bundled-speex )
     option dbus || config+=( no-dbus )
-    option no-overlay && config+=( no-overlay )
-    option no-plugins && config+=( no-plugins )
     option optimize && config+=( optimize )
     option pulseaudio || config+=( no-pulseaudio )
     option server || config+=( no-server )
@@ -92,7 +91,10 @@ src_configure() {
 
 src_install() {
     dobin release/mumble
+    dobin scripts/mumble-overlay
+
     doman man/mumble.1
+    doman man/mumble-overlay.1
 
     if option server ; then
         dobin release/murmurd
@@ -114,10 +116,11 @@ src_install() {
     exeinto /usr/${LIBDIR}/mumble
     doexe release/lib*.so*
 
-    if ! option no-plugins ; then
-        exeinto /usr/${LIBDIR}/mumble/plugins
-        doexe release/plugins/lib*.so*
-    fi
+    insinto /usr/share/applications/
+    doins scripts/mumble.desktop
+
+    insinto /usr/share/icons/hicolor/scalable/apps
+    doins icons/mumble.svg
 
     emagicdocs
 }

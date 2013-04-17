@@ -14,7 +14,7 @@ activity, it is primarily intended for gaming. It can be compared to programs li
 TeamSpeak. People tend to simplify things, so when they talk about Mumble they either talk about
 \"Mumble\" the client application or about \"Mumble & Murmur\" the whole voice chat application suite.
 "
-MY_PN="mumble-1.2.4~rc1-8-gb115a29"
+MY_PN="mumble-1.2.4~rc1-12-gdab8157"
 DOWNLOADS="http://mumble.info/snapshot/${MY_PN}.tar.gz"
 
 LICENCES="BSD-2"
@@ -38,7 +38,6 @@ DEPENDENCIES="
         x11-proto/inputproto
     build+run:
         dev-libs/boost
-        dev-libs/icu
         dev-libs/openssl
         dev-libs/protobuf
         media-libs/libsndfile

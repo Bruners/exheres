@@ -3,6 +3,12 @@
 **app-cdr/**
 + xfburn - _Xfburn CD/DVD burning tool from xfce patched with gio/udev support_
 
+**dev-libs/**
++ keybinder - _Keybinder works with GTK-based applications using the X Window System_
+
+**media/**
++ bino - _Bino is a video player with support for stereoscopic 3D and multi display video_
+
 **media-libs/**
 + gmtk - _Library for gnome-mplayer and gecko-mediaplayer_
 + gsm - _GSM 06.10 lossy speech compression library_
@@ -22,6 +28,7 @@
 + compton - _Compton is a X compositing manager, forked of xcompmgr-dana and xcompgmr_
 + trayer-srg - _trayer-srg is a lightweight GTK2-based systray for UNIX desktop_
 + gsimplecal - _A simple calendar gtk+ app written in C++_
++ volumeicon - _Volume Icon aims to be a lightweight volume control that sits in your systray_
 + xorg-launch-helper - _Xorg launcher for user sessions in systemd_
 
 **x11-libs/**

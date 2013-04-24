@@ -1,0 +1,38 @@
+# Copyright 2013 Lasse Brun <bruners@gmail.com>
+# Distributed under the terms of the GNU General Public License v2
+
+GITHUB_REVISION="${PV}"
+require github [ user=engla ]
+
+SUMMARY="Library for registering global keyboard shortcuts"
+DESCRIPTION="Keybinder works with GTK-based applications using the X Window System"
+HOMEPAGE="http://kaizer.se/wiki/keybinder/"
+
+LICENCES="X11"
+SLOT="3.0"
+PLATFORMS="~amd64"
+MYOPTIONS="gobject-introspection"
+
+DEPENDENCIES="
+    build:
+        dev-util/intltool
+        virtual/pkg-config
+        sys-devel/gettext
+    build+run:
+        dev-doc/gtk-doc[>=0.14]
+        dev-libs/glib:2[>=2.30]
+        x11-libs/gtk+:3[>=3][gobject-introspection?]
+
+        gobject-introspection? ( gnome-desktop/gobject-introspection:1[>=1.31.1] )
+"
+
+BUGS_TO="bruners@gmail.com"
+
+DEFAULT_SRC_CONFIGURE_OPTION_ENABLES=( 'gobject-introspection introspection' )
+
+src_prepare() {
+    default
+
+    edo ./autogen.sh --prefix=/usr --disable-python --disable-lua
+}
+

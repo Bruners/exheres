@@ -1,15 +1,19 @@
 # Copyright 2013 Lasse Brun <bruners@gmail.com>
 # Distributed under the terms of the GNU General Public License v2
 
-GITHUB_REVISION="${PV}"
-require github [ user=engla ]
+#GITHUB_REVISION="${PV}"
+#require github [ user=engla ]
 
 SUMMARY="Library for registering global keyboard shortcuts"
 DESCRIPTION="Keybinder works with GTK-based applications using the X Window System"
-HOMEPAGE="http://kaizer.se/wiki/keybinder/"
+MY_URL="http://kaizer.se"
+HOMEPAGE="${MY_URL}/wiki/${PN}/"
+
+SLOT="3.0"
+MY_PNSV="${PN}-${SLOT}-${PV}"
+DOWNLOADS="${MY_URL}/publicfiles/${PN}/${MY_PNSV}.tar.gz"
 
 LICENCES="X11"
-SLOT="3.0"
 PLATFORMS="~amd64"
 MYOPTIONS="gobject-introspection"
 
@@ -28,11 +32,12 @@ DEPENDENCIES="
 
 BUGS_TO="bruners@gmail.com"
 
-DEFAULT_SRC_CONFIGURE_OPTION_ENABLES=( 'gobject-introspection introspection' )
+WORK="${WORKBASE}/${MY_PNSV}"
 
-src_prepare() {
-    default
-
-    edo ./autogen.sh --prefix=/usr --disable-python --disable-lua
+src_configure() {
+    econf \
+        $(option_enable gobject-introspection introspection) \
+        --disable-python \
+        --disable-lua \
+        --with-html-dir="/usr/share/gtk-doc/html/${PNVR}"
 }
-

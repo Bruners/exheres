@@ -23,7 +23,7 @@ DEPENDENCIES="
             x11-libs/gtk+:2
             x11-themes/gtk-engines-murrine
         ) [[ description = [ Needed for the GTK2 part of the theme ] ]]
-        x11-themes/gtk-engines-unico [[ description = [ Needed for the GTK3 part of the theme ] ]]
+        gnome-desktop/gnome-themes-standard [[ description = [ Needed for the GTK3 part of the theme ] ]]
     suggestion:
         x11-themes/awoken-icon-theme [[
             description = [ A dark icon theme recommended by the author of ${PN} ]

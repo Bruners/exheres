@@ -1,9 +1,6 @@
 # Copyright 2013 Lasse Brun <bruners@gmail.com>
 # Distributed under the terms of the GNU General Public License v2
 
-#GITHUB_REVISION="${PV}"
-#require github [ user=engla ]
-
 SUMMARY="Library for registering global keyboard shortcuts"
 DESCRIPTION="Keybinder works with GTK-based applications using the X Window System"
 MY_URL="http://kaizer.se"
@@ -31,6 +28,9 @@ DEPENDENCIES="
 "
 
 BUGS_TO="bruners@gmail.com"
+
+UPSTREAM_CHANGELOG="https://github.com/engla/keybinder/blob/master/NEWS [[ lang = en ]]"
+UPSTREAM_DOCUMENTATION="https://github.com/engla/keybinder [[ lang = en description = [ Development on github ] ]]"
 
 WORK="${WORKBASE}/${MY_PNSV}"
 

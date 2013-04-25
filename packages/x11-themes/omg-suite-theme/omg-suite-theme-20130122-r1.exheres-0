@@ -9,7 +9,7 @@ A dark GTK theme in three styles with support for Metacity, Unity, XFwm4, Openbo
 Gnome-Shell and Chromium themes in the same style is available at ${MY_URL}
 "
 HOMEPAGE="${MY_URL}/art/OMG-Suite-288398137"
-DOWNLOADS="http://www.deviantart.com/download/288398137/omg_suite_by_nale12-d4rpdfd.zip -> ${PNV}.zip"
+DOWNLOADS="http://lasseb.tihlde.org/omg_suite_by_nale12-d4rpdfd.zip -> ${PNV}.zip"
 
 LICENCES="GPL-3"
 SLOT="0"

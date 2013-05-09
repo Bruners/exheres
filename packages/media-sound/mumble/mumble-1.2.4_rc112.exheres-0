@@ -26,7 +26,7 @@ MYOPTIONS="
     bundled-opus    [[ description = [ Bundle the opus codec ] ]]
     bundled-speex   [[ description = [ Bundle the speex codec ] ]]
     dbus
-    optimize        [[ description = [ Build a heavily optimized version. (Untested!) ] ]]
+    oss
     pulseaudio
     server          [[ description = [ Build the mumble server called murmurd ] requires = [ dbus ] ]]
     speechd         [[ description = [ Build text-to-Speech Dispatcher ] ]]
@@ -78,7 +78,7 @@ src_configure() {
     option bundled-opus || config+=( no-bundled-opus )
     option bundled-speex || config+=( no-bundled-speex )
     option dbus || config+=( no-dbus )
-    option optimize && config+=( optimize )
+    option oss || config+=( no-oss )
     option pulseaudio || config+=( no-pulseaudio )
     option server || config+=( no-server )
     option speechd || config+=( no-speechd )

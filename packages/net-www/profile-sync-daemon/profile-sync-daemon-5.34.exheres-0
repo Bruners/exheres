@@ -1,7 +1,7 @@
 # Copyright 2013 Lasse Brun <bruners@gmail.com>
 # Distributed under the terms of the GNU General Public License v2
 
-GITHUB_REVISION="${PV}"
+GITHUB_REVISION="v${PV}"
 require github [ user=graysky2 ]
 
 SUMMARY="Symlinks and syncs browser profile dirs to tmpfs speeding-up browsers"
@@ -29,6 +29,8 @@ UPSTREAM_DOCUMENTATION="
 UPSTREAM_CHANGELOG="https://github.com/graysky2/profile-sync-daemon/blob/master/CHANGELOG [[ lang = en ]]"
 
 BUGS_TO="bruners@gmail.com"
+
+WORK=${WORKBASE}/"${PNV}"
 
 src_prepare() {
     default

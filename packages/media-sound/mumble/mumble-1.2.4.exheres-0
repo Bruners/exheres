@@ -14,8 +14,6 @@ activity, it is primarily intended for gaming. It can be compared to programs li
 TeamSpeak. People tend to simplify things, so when they talk about Mumble they either talk about
 \"Mumble\" the client application or about \"Mumble & Murmur\" the whole voice chat application suite.
 "
-MY_PN="mumble-1.2.4~rc1-12-gdab8157"
-DOWNLOADS="http://mumble.info/snapshot/${MY_PN}.tar.gz"
 
 LICENCES="BSD-2"
 SLOT="0"
@@ -59,12 +57,10 @@ DEPENDENCIES="
         )
         speechd? ( app-speech/speechd )
 "
-WORK="${WORKBASE}/${MY_PN}"
 
 src_configure() {
     config=(
         bundled-celt               # use the bundled copy of celt
-        no-11x                     # don't build a client which is backwards compatible to mumble 1.1.x servers
         no-embed-qt-translations   # don't embed the qt translations
         no-g15                     # don't include support for the g15 keyboard
         no-ice                     # disable remote scripting using ZeroC Ice (a RPC mechanism)
@@ -125,7 +121,7 @@ src_install() {
 }
 
 pkg_postinst() {
-    einfo "Mumble tries to read/write to input devices directly but may fall back to using the less optimal xinput2"
+    einfo "Mumble supports reading the kernel input devices, but may fall back to using the less optimal xinput2"
     einfo "This can be solved with a simple udev rule: SUBSYSTEM==\"input\", GROUP=\"input\" MODE=\"660\""
 }
 

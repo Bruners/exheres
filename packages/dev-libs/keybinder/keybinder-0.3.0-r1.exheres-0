@@ -1,6 +1,8 @@
 # Copyright 2013 Lasse Brun <bruners@gmail.com>
 # Distributed under the terms of the GNU General Public License v2
 
+require easy-multibuild
+
 SUMMARY="Library for registering global keyboard shortcuts"
 DESCRIPTION="Keybinder works with GTK-based applications using the X Window System"
 MY_URL="http://kaizer.se"
@@ -12,17 +14,19 @@ DOWNLOADS="${MY_URL}/publicfiles/${PN}/${MY_PNSV}.tar.gz"
 
 LICENCES="X11"
 PLATFORMS="~amd64"
-MYOPTIONS="gobject-introspection"
+MYOPTIONS="gobject-introspection
+    multibuild_c: 32 64
+"
 
 DEPENDENCIES="
     build:
         dev-util/intltool
         virtual/pkg-config
-        sys-devel/gettext
+        sys-devel/gettext[multibuild_c:*(-)?]
     build+run:
         dev-doc/gtk-doc[>=0.14]
-        dev-libs/glib:2[>=2.30]
-        x11-libs/gtk+:3[>=3][gobject-introspection?]
+        dev-libs/glib:2[>=2.30][multibuild_c:*(-)?]
+        x11-libs/gtk+:3[>=3][gobject-introspection?][multibuild_c:*(-)?]
 
         gobject-introspection? ( gnome-desktop/gobject-introspection:1[>=1.31.1] )
 "
@@ -34,7 +38,7 @@ UPSTREAM_DOCUMENTATION="https://github.com/engla/keybinder [[ lang = en descript
 
 WORK="${WORKBASE}/${MY_PNSV}"
 
-src_configure() {
+configure_one_multibuild() {
     econf \
         $(option_enable gobject-introspection introspection) \
         --disable-python \

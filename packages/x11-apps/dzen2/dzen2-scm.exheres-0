@@ -1,0 +1,75 @@
+# Copyright 2009 Michael Forney
+# Copyright 2012, 2013 Lasse Brun <bruners@gmail.com>
+# Distributed under the terms of the GNU General Public License v2
+
+require github [ user=robm pn=dzen ]
+
+SUMMARY="A general purpose messaging and notification program for x11"
+DESCRIPTION="Designed to bring notication and menu capabilities to tiling WM\'s like dwm, wmi and xmonad.
+Scriptable in any language with versatile formatting including colors, icons and graphic widgets.
+Interactive user defined keyboard and mouse actions. Optional support for XFT fonts and Xinerama
+"
+LICENCES="MIT"
+SLOT="0"
+PLATFORMS="~amd64 ~x86"
+MYOPTIONS="
+    gadgets [[ description = [ Build gadgets (graphical meters, text tools) ] ]]
+    xft [[ description = [ Add XFT font rendering ] ]]
+    xinerama xpm
+"
+DEPENDENCIES="
+    build:
+        virtual/pkg-config
+    build+run:
+        x11-libs/libX11
+        xft? ( x11-libs/libXft )
+        xinerama? ( x11-libs/libXinerama )
+        xpm? ( x11-libs/libXpm )
+"
+BUGS_TO="bruners@gmail.com"
+
+DEFAULT_SRC_INSTALL_EXTRA_DOCS=( README.dzen )
+
+src_prepare() {
+    default
+
+    local flags=(
+        $(option xft "-DDZEN_XFT")
+        $(option xinerama "-DDZEN_XINERAMA")
+        $(option xpm "-DDZEN_XPM")
+    )
+    local libs=(
+        x11
+        $(optionv xft)
+        $(optionv xinerama)
+        $(optionv xpm)
+    )
+
+    if optionq gadgets; then
+        DEFAULT_SRC_INSTALL_EXTRA_SUBDIRS=( gadgets )
+        DEFAULT_SRC_INSTALL_EXTRA_PREFIXES=( README.{{d,gcpu,gd}bar,kittscanner,textwidth} )
+    fi
+
+    # Set up the configuration
+    edo sed -e "s:^\(VERSION =\).*:\1 ${PV}:" \
+            -e "s:^\(PREFIX =\).*:\1 /usr:" \
+            -e "s:^\(CFLAGS =\).*:\1 -Wall -DVERSION=\\\\\"\${VERSION}\\\\\" ${flags[*]} $(pkg-config --cflags ${libs[@]}) ${CFLAGS}:" \
+            -e "s:^\(LDFLAGS =\).*:\1 $(pkg-config --libs ${libs[@]}) ${LDFLAGS}:" \
+            -e "s:^\(CC =\).*:\1 ${CC}:" \
+            -i config.mk gadgets/config.mk
+
+    # Get rid of call to strip
+    edo sed -e "/^\t@strip \$@/d" -i Makefile gadgets/Makefile
+}
+
+src_compile() {
+    default
+
+    optionq gadgets && emake -C gadgets
+}
+
+src_install() {
+    default
+
+    optionq gadgets && dobin gadgets/{{d,gcpu,gd}bar,textwidth}
+}

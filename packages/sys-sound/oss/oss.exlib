@@ -46,7 +46,7 @@ OSS_MODULES=(
 src_prepare() {
     # Change OSSLIBDIR in configure to be less static
     edo sed -i -e 's:OSSLIBDIR="/usr/lib/oss":OSSLIBDIR="/usr/${LIBDIR}/oss":' configure
-    expatch ${FILES}/fix-build-on-3.8-kernels.patch
+
     expatch ${FILES}/etc-soundon.patch
 }
 

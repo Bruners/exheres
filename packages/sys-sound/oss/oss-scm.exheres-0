@@ -2,8 +2,8 @@
 # Copyright 2012 Lasse Brun <bruners@gmail.com>
 # Distributed under the terms of the GNU General Public License v2
 
-SCM_REPOSITORY="http://opensound.hg.sourceforge.net/hgweb/opensound/opensound/"
-require oss scm-hg
+SCM_REPOSITORY="http://git.code.sf.net/p/opensound/git"
+require oss scm-git
 
 SLOT="0"
 PLATFORMS="

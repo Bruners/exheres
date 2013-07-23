@@ -15,4 +15,7 @@ DOWNLOADS="http://www.4front-tech.com/developer/sources/stable/gpl/${MY_P}.tar.b
 SLOT="0"
 PLATFORMS="~amd64"
 
-DEFAULT_SRC_PREPARE_PATCHES+=( "${FILES}"/0001-Compile-fix-for-Linux-3.10.patch )
+DEFAULT_SRC_PREPARE_PATCHES+=(
+    "${FILES}"/fix-build-on-3.8-kernels.patch
+    "${FILES}"/0001-Compile-fix-for-Linux-3.10.patch
+)

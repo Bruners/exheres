@@ -1,0 +1,26 @@
+From 249fb07d85a7a2acffec70fab22d1b4fc1f6ab35 Mon Sep 17 00:00:00 2001
+From: Hannu Savolainen <hannu@opensound.com>
+Date: Thu, 25 Jul 2013 17:18:45 +0300
+Subject: [PATCH 4/6] Compile fix for Linux 3.11.0
+
+---
+ setup/Linux/oss/build/osscore.c | 2 ++
+ 1 file changed, 2 insertions(+)
+
+diff --git a/setup/Linux/oss/build/osscore.c b/setup/Linux/oss/build/osscore.c
+index 3d6c110..51ad0cb 100644
+--- a/setup/Linux/oss/build/osscore.c
++++ b/setup/Linux/oss/build/osscore.c
+@@ -984,7 +984,9 @@ alloc_fop (oss_device_t * osdev, struct oss_file_operation_handle *op)
+   fop->llseek = oss_no_llseek;
+   fop->read = tmp_read;
+   fop->write = tmp_write;
++#if LINUX_VERSION_CODE < KERNEL_VERSION(3,11,0)
+   fop->readdir = NULL;		/* tmp_readdir; */
++#endif
+   fop->poll = tmp_poll;
+ #if LINUX_VERSION_CODE <= KERNEL_VERSION(2,6,35)
+   fop->ioctl = tmp_ioctl;
+-- 
+1.8.3.2
+

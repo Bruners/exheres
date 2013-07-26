@@ -47,8 +47,6 @@ src_prepare() {
     # Change OSSLIBDIR in configure to be less static
     edo sed -i -e 's:OSSLIBDIR="/usr/lib/oss":OSSLIBDIR="/usr/${LIBDIR}/oss":' configure
 
-    expatch ${FILES}/etc-soundon.patch
-
     default
 }
 

@@ -1,9 +1,7 @@
-Upstream: yes
-
 From 8c0b4a5313a5eca5afd087f3787ac3a23b8a4c9f Mon Sep 17 00:00:00 2001
 From: Hannu Savolainen <hannu@opensound.com>
 Date: Thu, 18 Jul 2013 23:10:23 +0300
-Subject: [PATCH] Compile fix for Linux 3.10
+Subject: [PATCH 3/6] Compile fix for Linux 3.10
 
 ---
  setup/Linux/oss/build/osscore.c | 45 ++++++++++++++++++++++++++++++++++-------
@@ -16,20 +14,20 @@ index 1a029b4..3d6c110 100644
 @@ -276,28 +276,59 @@ oss_read_devfiles (struct file *file, char __user * buf, size_t count,
    return strlen (tmp);
  }
-
+ 
 +
 +#if LINUX_VERSION_CODE < KERNEL_VERSION(3,10,0)
  static struct file_operations oss_proc_operations = {
    .read = oss_read_devfiles,
  };
 +#else
-+static struct file_operations fops = {
++static struct file_operations fops = { 
 + .owner = THIS_MODULE,
 + .read = oss_read_devfiles,
 +};
 +#endif
 +
-
+ 
  static void
  init_proc_fs (void)
  {
@@ -55,7 +53,7 @@ index 1a029b4..3d6c110 100644
 +
 +#else
 +
-+  if ((oss_proc_root =
++  if ((oss_proc_root = 
 +         proc_mkdir ("opensound", NULL)) == NULL )
      {
 -      oss_cmn_err (CE_CONT, "Cannot create /proc/opensound\n");
@@ -63,7 +61,7 @@ index 1a029b4..3d6c110 100644
 +   oss_cmn_err (CE_CONT, "Cannot create /proc/opensound\n");
 +   return;
      }
-
+ 
    if ((oss_proc_devfiles =
 -       create_proc_entry ("devfiles", 0600, oss_proc_root)) == NULL)
 +   proc_create ("devfiles", 0600, oss_proc_root, &fops)) == NULL)
@@ -73,12 +71,13 @@ index 1a029b4..3d6c110 100644
 +   oss_cmn_err (CE_CONT, "Cannot create /proc/opensound/devfiles\n");
 +         return;
      }
-
+ 
 -  oss_proc_devfiles->proc_fops = &oss_proc_operations;
 +#endif
-+
++ 
  }
-
+ 
  static void
---
-1.8.3.3
+-- 
+1.8.3.2
+

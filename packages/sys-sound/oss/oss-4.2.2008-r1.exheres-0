@@ -16,6 +16,11 @@ SLOT="0"
 PLATFORMS="~amd64"
 
 DEFAULT_SRC_PREPARE_PATCHES+=(
-    "${FILES}"/fix-build-on-3.8-kernels.patch
-    "${FILES}"/0001-Compile-fix-for-Linux-3.10.patch
+    # Upstream patches starting from commit 9d9146 to bddf15
+    "${FILES}"/0001-Added-ALC899.patch
+    "${FILES}"/0002-Xonar-DX-D1-patch-for-176.4-192KHz-popping-clicking.patch
+    "${FILES}"/0003-Compile-fix-for-Linux-3.10.patch
+    "${FILES}"/0004-Compile-fix-for-Linux-3.11.0.patch
+    "${FILES}"/0005-Fix-for-Linux-3.8.x.patch
+    "${FILES}"/0006-Added-alternative-directory-for-soundon.user.patch
 )

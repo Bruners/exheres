@@ -1,0 +1,30 @@
+From bddf15d83e2e680d749998e26341010e473a5491 Mon Sep 17 00:00:00 2001
+From: Hannu Savolainen <hannu@opensound.com>
+Date: Thu, 25 Jul 2013 17:32:40 +0300
+Subject: [PATCH 6/6] Added alternative directory for soundon.user under Linux
+
+---
+ setup/Linux/sbin/soundon | 7 +++++++
+ 1 file changed, 7 insertions(+)
+
+diff --git a/setup/Linux/sbin/soundon b/setup/Linux/sbin/soundon
+index e868fd6..a5b7e40 100755
+--- a/setup/Linux/sbin/soundon
++++ b/setup/Linux/sbin/soundon
+@@ -318,6 +318,13 @@ then
+   $OSSLIBDIR/soundon.user >> $LOG 2>&1
+ fi
+ 
++# Use alternative place for soundon.user
++if test -x /etc/oss/soundon.user
++then
++  echo Running /etc/oss/soundon.user >> $LOG
++  /etc/oss/soundon.user >> $LOG 2>&1
++fi
++
+ if test "`ossinfo -g|grep TRIAL` " != " "
+ then
+ 	echo
+-- 
+1.8.3.2
+

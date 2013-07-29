@@ -15,7 +15,6 @@
 
 **media-sound/**
 + mangler - _An open source VOIP client capable of connecting to Ventrilo 3.x servers_
-+ mumble - _Mumble is an open source, low-latency, high quality voice chat software_
 
 **net-www/**
 + gecko-mediaplayer - _A browser plugin to play media with gnome-mplayer_

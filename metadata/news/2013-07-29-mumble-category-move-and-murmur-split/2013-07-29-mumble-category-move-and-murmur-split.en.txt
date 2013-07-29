@@ -1,0 +1,17 @@
+Title: media-sound/mumble has been split to voip/mumble in ::desktop and voip/murmur in ::net
+Author: Timo Gurr <tgurr@exherbo.org>
+Content-Type: text/plain
+Posted: 2013-07-29
+Revision: 1
+News-Item-Format: 1.0
+Display-If-Installed: media-sound/mumble
+
+Mumble has been split in separate packages, the client voip/mumble in ::desktop
+and the server voip/murmur in ::net. Please also review the murmur server setup
+and that the owner of /var/{lib,log}/murmur is murmur:murmur. You may also want
+to remove the old user and group named mumble-server from your system.
+
+Please uninstall media-libs/mumble and install:
+
+    * voip/mumble for the Mumble client
+    * voip/murmur for the Murmur server

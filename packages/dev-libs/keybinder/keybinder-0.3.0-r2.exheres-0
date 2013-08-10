@@ -1,20 +1,16 @@
 # Copyright 2013 Lasse Brun <bruners@gmail.com>
 # Distributed under the terms of the GNU General Public License v2
 
-require easy-multibuild
+SLOT="3.0"
+GITHUB_REVISION="${PN}-${SLOT}-v${PV}"
+require github [ user=engla ] autotools [ supported_autoconf=[ 2.5 ] supported_automake=[ 1.14 ] ] easy-multibuild
 
 SUMMARY="Library for registering global keyboard shortcuts"
 DESCRIPTION="Keybinder works with GTK-based applications using the X Window System"
-MY_URL="http://kaizer.se"
-HOMEPAGE="${MY_URL}/wiki/${PN}/"
 
-SLOT="3.0"
-MY_PNSV="${PN}-${SLOT}-${PV}"
-DOWNLOADS="${MY_URL}/publicfiles/${PN}/${MY_PNSV}.tar.gz"
-
-LICENCES="X11"
+LICENCES="GPL-2"
 PLATFORMS="~amd64"
-MYOPTIONS="gobject-introspection
+MYOPTIONS="gtk-doc gobject-introspection python
     multibuild_c: 32 64
 "
 
@@ -24,24 +20,25 @@ DEPENDENCIES="
         virtual/pkg-config
         sys-devel/gettext[multibuild_c:*(-)?]
     build+run:
-        dev-doc/gtk-doc[>=0.14]
+        gtk-doc? ( dev-doc/gtk-doc[>=0.14] )
+        gobject-introspection? ( gnome-desktop/gobject-introspection[>=1.31.1] )
         dev-libs/glib:2[>=2.30][multibuild_c:*(-)?]
         x11-libs/gtk+:3[>=3][gobject-introspection?][multibuild_c:*(-)?]
-
-        gobject-introspection? ( gnome-desktop/gobject-introspection:1[>=1.31.1] )
+    run:
+        python? ( gnome-bindings/pygobject:2 )
 "
 
 BUGS_TO="bruners@gmail.com"
 
-UPSTREAM_CHANGELOG="https://github.com/engla/keybinder/blob/master/NEWS [[ lang = en ]]"
-UPSTREAM_DOCUMENTATION="https://github.com/engla/keybinder [[ lang = en description = [ Development on github ] ]]"
+WORK="${WORKBASE}/${PN}-${GITHUB_REVISION}"
 
-WORK="${WORKBASE}/${MY_PNSV}"
+src_prepare() {
+    edo gtkdocize
+    autotools_src_prepare
+}
 
 configure_one_multibuild() {
     econf \
         $(option_enable gobject-introspection introspection) \
-        --disable-python \
-        --disable-lua \
-        --with-html-dir="/usr/share/gtk-doc/html/${PNVR}"
+        $(option_enable gtk-doc)
 }

@@ -35,7 +35,7 @@ DEPENDENCIES="
         x11-apps/xprop
         x11-apps/xwininfo
         dbus? (
-            sys-apps/dbus[<1.6.9] [[ note = [ dbus-1.7.0: linking compton with glibc/dbus fails ] ]]
+            sys-apps/dbus
         )
         libconfig? ( dev-libs/libconfig )
         opengl? ( x11-dri/mesa )
@@ -70,9 +70,9 @@ src_install() {
 }
 
 pkg_postinst() {
-    einfo "Sample configuration/tools for ${PN} can be found in /usr/share/doc/${PNV}"
-    einfo "compton.sample.conf - Sourced from XDG directories \$XDG_CONFIG_HOME}/${PN}.conf \$HOME}/.${PN}.conf"
+    elog "Sample configuration/tools for ${PN} can be found in /usr/share/doc/${PNV}"
+    elog "compton.sample.conf - Sourced from XDG directories \$XDG_CONFIG_HOME/${PN}.conf \$HOME/.${PN}.conf"
     option dbus &&
-        einfo "cdbus-driver.sh - A script to control ${PN} via dbus"
+        elog "cdbus-driver.sh - A script to control ${PN} via dbus"
 }
 

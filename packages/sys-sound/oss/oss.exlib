@@ -94,7 +94,3 @@ Type=Application
 EOF
 }
 
-pkg_postinst() {
-    einfo "The /usr/sbin/soundon script will run \"soundon.user\" from \"/etc/oss/\" if found an executable"
-}
-

@@ -3,7 +3,7 @@
 
 SLOT="3.0"
 GITHUB_REVISION="${PN}-${SLOT}-v${PV}"
-require github [ user=engla ] autotools [ supported_autoconf=[ 2.5 ] supported_automake=[ 1.14 ] ] easy-multibuild
+require github [ user=engla ] autotools [ supported_autoconf=[ 2.5 ] supported_automake=[ 1.13 ] ] easy-multibuild
 
 SUMMARY="Library for registering global keyboard shortcuts"
 DESCRIPTION="Keybinder works with GTK-based applications using the X Window System"

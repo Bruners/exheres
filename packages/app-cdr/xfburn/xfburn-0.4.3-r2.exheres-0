@@ -1,5 +1,5 @@
 # Copyright 2009 Hong Hao <oahong@gmail.com> ::exherbo-cn
-# Copyright 2012 Lasse Brun <bruners@gmail.com>
+# Copyright 2012, 2013 Lasse Brun <bruners@gmail.com>
 # Distributed under the terms of the GNU General Public License v2
 
 require xfce [ module=apps ] gtk-icon-cache
@@ -41,7 +41,7 @@ DEPENDENCIES="
 BUGS_TO="bruners@gmail.com"
 
 # Set the correct path for eautoreconf
-AT_M4DIR=/usr/share/xfce4/dev-tools/m4macros
+AT_M4DIR=( /usr/share/xfce4/dev-tools/m4macros )
 
 DEFAULT_SRC_PREPARE_PATCHES=(
     # Apply patches to port Xfburn to be XFCE 4.8 compatible.

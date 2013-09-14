@@ -7,7 +7,7 @@ SLOT="0"
 PLATFORMS="~amd64"
 
 # The directory aclocal should search
-AT_M4DIR="m4"
+AT_M4DIR=( m4 )
 
 src_prepare() {
     # The repo contains files in dos format which makes the next step crash

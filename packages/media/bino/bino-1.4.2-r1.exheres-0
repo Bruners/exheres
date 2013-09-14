@@ -29,8 +29,12 @@ DEPENDENCIES="
 
 BUGS_TO="bruners@gmail.com"
 
-# Allow multiple definitions (media-libs/glew)
-export LDFLAGS="${LDFLAGS} -zmuldefs"
+# -zmuldefs: Allows multiple definitions (media-libs/glew)
+DEFAULT_SRC_CONFIGURE_PARAMS=( LDFLAGS="${LDFLAGS} -zmuldefs" --without-equalizer --without-liblircclient )
 
-DEFAULT_SRC_CONFIGURE_PARAMS=( --without-equalizer --without-liblircclient )
+src_prepare() {
+    # Fix missing macro for ffmpeg decoder
+    edo sed '1i#define AVCODEC_MAX_AUDIO_FRAME_SIZE 192000' -i src/media_object.cpp
 
+    default
+}

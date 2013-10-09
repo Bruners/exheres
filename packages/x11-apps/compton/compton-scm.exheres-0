@@ -14,6 +14,7 @@ MYOPTIONS="
     dbus        [[ description = [ Change VSync mode with D-Bus, needs testing ] ]]
     libconfig   [[ description = [ Configuration for MIA qt-gui?, prefers 2.x, 1.4.x should work ] ]]
     opengl      [[ description = [ Opengl and VSync composition ] ]]
+    xinerama
 "
 
 DEPENDENCIES="
@@ -22,7 +23,7 @@ DEPENDENCIES="
         virtual/pkg-config
         x11-proto/xproto
     build+run:
-        dev-libs/pcre
+        dev-libs/pcre[>=8.10]
         x11-libs/libX11
         x11-libs/libXcomposite
         x11-libs/libXdamage
@@ -31,14 +32,13 @@ DEPENDENCIES="
         x11-libs/libXrandr
         x11-libs/libXrender
     run:
-        app-shells/bash
         x11-apps/xprop
         x11-apps/xwininfo
-        dbus? (
-            sys-apps/dbus
-        )
+
+        dbus? ( sys-apps/dbus )
         libconfig? ( dev-libs/libconfig )
         opengl? ( x11-dri/mesa )
+        xinerama? ( x11-libs/libXinerama )
 "
 
 BUGS_TO="bruners@gmail.com"
@@ -51,6 +51,7 @@ src_compile() {
     option dbus || config+=( NO_DBUS=true )
     option libconfig || config+=( NO_LIBCONFIG=true )
     option opengl || config+=( NO_VSYNC_OPENGL=true NO_VSYNC_DRM=true )
+    option xinerama || config+( NO_XINERAMA=true )
 
     emake ${config[*]} ${PN}
 

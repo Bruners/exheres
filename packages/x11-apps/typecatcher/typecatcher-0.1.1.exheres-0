@@ -1,7 +1,7 @@
 # Copyright 2013 Lasse Brun <bruners@gmail.com>
 # Distributed under the terms of the GNU General Public License v2
 
-require distutils launchpad [ pv=${PV}-final pnv=${PNV} ]
+require distutils launchpad
 
 SUMMARY="Download Google webfonts for off-line use"
 DESCRIPTION="
@@ -14,12 +14,13 @@ SLOT="0"
 PLATFORMS="~amd64"
 
 DEPENDENCIES="
-    build:
     build+run:
         dev-python/distutils-extra[>=2.18]
         gnome-bindings/pygobject:3
+    run:
+        net-libs/webkit:3.0[gobject-introspection]
+        gnome-desktop/yelp
 "
 
 BUGS_TO="bruners@gmail.com"
-
 

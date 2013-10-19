@@ -40,6 +40,6 @@ src_configure() {
     option libnotify && config+=( --enable-notify )
     option oss && config+=( --enable-oss --with-default-mixerapp="ossmix" )
 
-    edo ./configure --prefix=/usr "${config[@]}"
+    econf "${config[@]}"
 }
 

@@ -11,7 +11,7 @@ clock, but can be used as a standalone calendar app.
 Can be configured to not only show the calendar, but also display
 multiple clocks for different world timezones.
 "
-LICENCES="BSD"
+LICENCES="BSD-3"
 SLOT="0"
 PLATFORMS="~amd64"
 

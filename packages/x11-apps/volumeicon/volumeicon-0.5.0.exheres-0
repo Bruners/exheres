@@ -28,21 +28,18 @@ DEPENDENCIES="
         x11-libs/gtk+:3
 
         alsa? ( sys-sound/alsa-lib )
-        oss? ( sys-sound/oss )
         libnotify? ( x11-libs/libnotify[>=0.5.0] )
+        oss? ( sys-sound/oss )
 "
 
-BUGS_TO=""
+BUGS_TO="bruners@gmail.com"
 
-default_mixer=""
+src_configure() {
+    config=()
+    option alsa && config+=( --with-default-mixerapp="alsamixer" )
+    option libnotify && config+=( --enable-notify )
+    option oss && config+=( --enable-oss --with-default-mixerapp="ossmix" )
 
-src_prepare() {
-    default
-    option oss && default_mixer="ossmix" || default_mixer="alsamixer"
+    edo ./configure --prefix=/usr "${config[@]}"
 }
-
-DEFAULT_SRC_CONFIGURE_PARAMS=( --with-default-mixerapp=${default_mixer} )
-DEFAULT_SRC_CONFIGURE_OPTION_ENABLES=( alsa oss
-    'libnotify notify'
-)
 

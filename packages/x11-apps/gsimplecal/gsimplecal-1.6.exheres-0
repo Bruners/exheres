@@ -2,7 +2,7 @@
 # Distributed under the terms of the GNU General Public License v2
 
 require autotools [ supported_autoconf=[ 2.5 ] supported_automake=[ 1.12 1.11 ] ]
-require github [ user=dmedvinsky rev=v${PV} ]
+require github [ user=dmedvinsky tag=v${PV} ]
 
 SUMMARY="Gsimplecal is a lightweight calendar applet written in C++ using GTK2."
 DESCRIPTION="
@@ -14,8 +14,6 @@ multiple clocks for different world timezones.
 LICENCES="BSD-3"
 SLOT="0"
 PLATFORMS="~amd64"
-
-WORK="${WORKBASE}/${PNV}"
 
 DEPENDENCIES="
     build+run:

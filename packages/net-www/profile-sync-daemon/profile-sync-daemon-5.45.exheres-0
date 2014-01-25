@@ -1,7 +1,7 @@
 # Copyright 2013 Lasse Brun <bruners@gmail.com>
 # Distributed under the terms of the GNU General Public License v2
 
-require github [ user=graysky2 rev=v${PV} ]
+require github [ user=graysky2 tag=v${PV} ]
 
 SUMMARY="Symlinks and syncs browser profile dirs to tmpfs speeding-up browsers"
 DESCRIPTION="
@@ -27,8 +27,6 @@ UPSTREAM_DOCUMENTATION="
     ${HOMEPAGE} [[ lang = en description = [ Github Repository ] ]]
     https://wiki.archlinux.org/index.php/Profile-sync-daemon [[ lang = en description = [ Arch Linux Wiki ] ]]
 "
-
-WORK=${WORKBASE}/"${PNV}"
 
 DEFAULT_SRC_INSTALL_PARAMS=( INITDIR_SYSTEMD="/usr/${LIBDIR}/systemd/system" install-systemd-all )
 

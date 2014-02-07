@@ -1,0 +1,28 @@
+# Copyright 2012, 2014 Lasse Brun <bruners@gmail.com>
+# Distributed under the terms of the GNU General Public License v2
+
+require github [ user=sargon ]
+
+SUMMARY="trayer-srg is a lightweight GTK2-based systray for UNIX desktop"
+DESCRIPTION="trayer-srg is small program designed to provide systray functionality present in GNOME/KDE
+desktop enviroments for window managers wchich doesn't support that function. It's similar to other
+applications such as 'peksystray' and 'docker'.
+
+trayer-srg was forked from trayer in january 2010 to add some fancy features and clean up code.
+"
+LICENCES="GPL-2"
+BUGS_TO="bruners@gmail.com"
+MYOPTIONS=""
+DEPENDENCIES="
+    build:
+        dev-util/pkg-config
+    build+run:
+        x11-libs/gdk-pixbuf:2.0
+        x11-libs/gtk+:2
+        x11-libs/libX11
+"
+
+src_install() {
+    dobin "${WORK}"/trayer
+    doman "${WORK}"/man/trayer.1
+}

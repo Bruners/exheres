@@ -1,7 +1,7 @@
-# Copyright 2013 Lasse Brun <bruners@gmail.com>
+# Copyright 2013, 2014 Lasse Brun <bruners@gmail.com>
 # Distributed under the terms of the GNU General Public License v2
 
-require distutils launchpad
+require distutils launchpad [ pnv=${PNV//-/_}.orig ]
 
 SUMMARY="Download Google webfonts for off-line use"
 DESCRIPTION="
@@ -23,4 +23,5 @@ DEPENDENCIES="
 "
 
 BUGS_TO="bruners@gmail.com"
+WORK="${WORKBASE}/${PNV//_/-}"
 

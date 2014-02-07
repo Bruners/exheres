@@ -1,5 +1,5 @@
 # Copyright 2010 Julien Pivotto <roidelapluie@gmail.com>
-# Copyright 2013 Lasse Brun <bruners@gmail.com>
+# Copyright 2013, 2014 Lasse Brun <bruners@gmail.com>
 # Distributed under the terms of the GNU General Public License v2
 
 require gsettings googlecode [ suffix=tar.gz ]
@@ -11,7 +11,6 @@ It should work with all browsers on Unix-ish systemsi and use the NS4 API (Firef
 "
 
 LICENCES="GPL-2"
-SLOT="0"
 
 DEPENDENCIES="
     build:
@@ -21,7 +20,7 @@ DEPENDENCIES="
         dev-libs/xulrunner[>=2.0]
         dev-libs/nspr
         dev-libs/dbus-glib[>=0.70]
-        media-libs/gmtk
+        media-libs/gmtk[>=1.0.7]
         media-video/gnome-mplayer[>=1.0.7][dbus]
         net-misc/curl
 "

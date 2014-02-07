@@ -14,11 +14,15 @@ multiple clocks for different world timezones.
 LICENCES="BSD-3"
 SLOT="0"
 PLATFORMS="~amd64"
+MYOPTIONS="gtk2"
 
 DEPENDENCIES="
     build+run:
-        x11-libs/gtk+:2
+            gtk2? ( x11-libs/gtk+:2 )
+            !gtk2? ( x11-libs/gtk+:3 )
 "
 
 BUGS_TO="bruners@gmail.com"
+
+DEFAULTS_SRC_CONFIGURE_OPTION_ENABLES=( gtk2 )
 

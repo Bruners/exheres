@@ -1,4 +1,4 @@
-# Copyright 2013 Lasse Brun <bruners@gmail.com>
+# Copyright 2013, 2014 Lasse Brun <bruners@gmail.com>
 # Distributed under the terms of the GNU General Public License v2
 
 require autotools [ supported_autoconf=[ 2.5 ] supported_automake=[ 1.11 ] ]
@@ -21,19 +21,19 @@ DEPENDENCIES="
         !libav? ( media/ffmpeg[>=0.7] )
         libav? ( media/libav[>=0.7] )
         media-libs/libass[>=0.9.9]
-        media-libs/openal
+        media-libs/openal[>=1.15.1]
         media-libs/glew[>=1.6.0]
         x11-libs/qt:4[opengl]
 "
 
 BUGS_TO="bruners@gmail.com"
 
+DEFAULT_SRC_PREPARE_PATCHES=(
+    "${FILES}"/50b7109633fab4a2e6e76c2fd3f00b08158a268f 
+    "${FILES}"/e79519e7b426bbef45b80b06bacf007593738c55
+    "${FILES}"/78023424d4cf42927681e6a6835d219ef7d6609c
+    "${FILES}"/14a170787be2f7c6980828ef480d0401379b0b76
+)
 # -zmuldefs: Allows multiple definitions (media-libs/glew)
 DEFAULT_SRC_CONFIGURE_PARAMS=( LDFLAGS="${LDFLAGS} -zmuldefs" --without-equalizer --without-liblircclient )
 
-src_prepare() {
-    # Fix missing macro for ffmpeg decoder
-    edo sed '1i#define AVCODEC_MAX_AUDIO_FRAME_SIZE 192000' -i src/media_object.cpp
-
-    default
-}

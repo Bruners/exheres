@@ -1,0 +1,28 @@
+From e79519e7b426bbef45b80b06bacf007593738c55 Mon Sep 17 00:00:00 2001
+From: Vittorio Giovara <vittorio.giovara@gmail.com>
+Date: Wed, 18 Dec 2013 15:03:09 +0000
+Subject: deprecate lowres usage for newer lavc compatibility
+
+Source: Vittorio Giovara <vittorio.giovara@gmail.com>
+Upstream: Applied upstream for bino >1.5
+Reason: Needed to build against libav[scm]
+---
+diff --git a/src/media_object.cpp b/src/media_object.cpp
+index 1a644c2..5c10ee3 100644
+--- a/src/media_object.cpp
++++ b/src/media_object.cpp
+@@ -900,7 +900,11 @@ void media_object::open(const std::string &url, const device_request &dev_reques
+             // Set CODEC_FLAG_EMU_EDGE in the same situations in which ffplay sets it.
+             // I don't know what exactly this does, but it is necessary to fix the problem
+             // described in this thread: http://lists.nongnu.org/archive/html/bino-list/2012-02/msg00039.html
+-            if (codec_ctx->lowres || (codec && (codec->capabilities & CODEC_CAP_DR1)))
++            int lowres = 0;
++#ifdef FF_API_LOWRES
++            lowres = codec_ctx->lowres;
++#endif
++            if (lowres || (codec && (codec->capabilities & CODEC_CAP_DR1)))
+                 codec_ctx->flags |= CODEC_FLAG_EMU_EDGE;
+         }
+         // Find and open the codec. AV_CODEC_ID_TEXT is a special case: it has no decoder since it is unencoded raw data.
+--
+cgit v0.9.0.2

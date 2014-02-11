@@ -11,16 +11,15 @@ DOWNLOADS="http://download.savannah.nongnu.org/releases/${PN}/${PNV}.tar.xz"
 LICENCES="GPL-3"
 SLOT="0"
 PLATFORMS="~amd64"
+MYOPTIONS="libav"
 
 DEPENDENCIES="
     build:
         sys-devel/gettext
         virtual/pkg-config
     build+run:
-        || (
-            media/ffmpeg[>=0.7]
-            media/libav[>=0.7]
-        )
+        !libav? ( media/ffmpeg[>=0.7] )
+        libav? ( media/libav[>=0.7] )
         media-libs/libass[>=0.9.9]
         media-libs/openal
         media-libs/glew[>=1.6.0]

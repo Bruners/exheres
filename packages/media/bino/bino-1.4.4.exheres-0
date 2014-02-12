@@ -28,8 +28,9 @@ DEPENDENCIES="
 
 BUGS_TO="bruners@gmail.com"
 
+# Patches for newer lavc compatibility, applied upstream for >1.5
 DEFAULT_SRC_PREPARE_PATCHES=(
-    "${FILES}"/50b7109633fab4a2e6e76c2fd3f00b08158a268f 
+    "${FILES}"/50b7109633fab4a2e6e76c2fd3f00b08158a268f
     "${FILES}"/e79519e7b426bbef45b80b06bacf007593738c55
     "${FILES}"/78023424d4cf42927681e6a6835d219ef7d6609c
     "${FILES}"/14a170787be2f7c6980828ef480d0401379b0b76

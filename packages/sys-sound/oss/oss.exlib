@@ -1,5 +1,5 @@
 # Copyright 2009 Trond A Ekseth <troeks@gmail.com>
-# Copyright 2012 Lasse Brun <bruners@gmail.com>
+# Copyright 2012, 2014 Lasse Brun <bruners@gmail.com>
 # Distributed under the terms of the GNU General Public License v2
 
 SUMMARY="Open Sound System"
@@ -41,6 +41,10 @@ src_prepare() {
     # Change OSSLIBDIR in configure to be less static
     edo sed -i -e 's:OSSLIBDIR="/usr/lib/oss":OSSLIBDIR="/usr/${LIBDIR}/oss":' configure
 
+    # Override default max quality configuration to enable production quality from ossxmix.
+    # Upstream comment: 'Set GRC3 min/max conversion quality setting to 3 to conserve space.'
+    edo sed -i -e 's:GRC_MAX_QUALITY=3":GRC_MAX_QUALITY=7:' configure
+
     default
 }
 
@@ -60,6 +64,10 @@ src_configure() {
         einfo "Disabling all OSS modules except ${config}"
         edo "${WORK}"/configure --only-drv="${config}"
     fi
+
+    # Override default max quality configuration to enable production quality from ossxmix.
+    edo sed -i -e 's:#define CONFIG_OSS_GRC_MAX_QUALITY 3:#define CONFIG_OSS_GRC_MAX_QUALITY 7:' \
+        kernel/framework/include/local_config.h
 }
 
 src_compile() {

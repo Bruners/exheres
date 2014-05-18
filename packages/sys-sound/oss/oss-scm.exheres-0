@@ -1,5 +1,5 @@
 # Copyright 2009 Trond A Ekseth <troeks@gmail.com>
-# Copyright 2012 Lasse Brun <bruners@gmail.com>
+# Copyright 2012, 2014 Lasse Brun <bruners@gmail.com>
 # Distributed under the terms of the GNU General Public License v2
 
 SCM_REPOSITORY="http://git.code.sf.net/p/opensound/git"
@@ -9,3 +9,8 @@ SLOT="0"
 PLATFORMS="
     ~amd64
 "
+
+DEFAULT_SRC_PREPARE_PATCHES+=(
+    "${FILES}"/0001-Compile-fix-for-Linux-3.14.patch
+    "${FILES}"/0002-Fix-modprobe-problems-after-updating.patch
+)

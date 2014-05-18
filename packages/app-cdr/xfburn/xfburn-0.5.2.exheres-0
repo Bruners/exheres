@@ -1,0 +1,46 @@
+# Copyright 2009 Hong Hao <oahong@gmail.com> ::exherbo-cn
+# Copyright 2012, 2013, 2014 Lasse Brun <bruners@gmail.com>
+# Distributed under the terms of the GNU General Public License v2
+
+require xfce [ module=apps ] gtk-icon-cache
+require autotools [ supported_autoconf=[ 2.5 ] supported_automake=[ 1.13 ] ]
+
+SUMMARY="Xfburn CD/DVD/BluRay burning tool from XFCE"
+DESCRIPTION="Xfburn is a simple CD/DVD burning tool based on libburnia libraries. It can blank
+CD/DVD(-RW)s, burn and create iso images, audio CDs, as well as burn personal compositions of data
+to either CD or DVD."
+
+HOMEPAGE="http://goodies.xfce.org/projects/applications/${PN}"
+SLOT="0"
+PLATFORMS="~amd64"
+
+DEPENDENCIES="
+    build:
+        xfce-extra/xfce4-dev-tools
+    build+run:
+        app-cdr/libburn[>=1.3.2]
+        app-cdr/libisofs[>=1.3.2]
+        dev-libs/dbus-glib:1[>=0.34]
+        dev-libs/glib:2[>=2.37.3]
+        dev-lang/perl:*[>=5.8.1]
+        media-plugins/gst-plugins-base:0.10[>=0.10.2]
+        x11-libs/gdk-pixbuf[>=2.22.0]
+        x11-libs/gtk+:2[>=2.14.0]
+        xfce-base/exo[>=0.5.0]
+        xfce-base/libxfce4ui[>=4.9.0]
+        sys-apps/systemd [[ note = [ for udev ] ]]
+    suggestion:
+        (
+            media-plugins/gst-ffmpeg
+            media-plugins/gst-plugins-base[gstreamer_plugins:ogg][gstreamer_plugins:vorbis]
+            media-plugins/gst-plugins-good[gstreamer_plugins:flac]
+            media-plugins/gst-plugins-ugly[gstreamer_plugins:mpeg2]
+        ) [[
+            *description = [ Dependencies for burning compressed music files as an audio cd ]
+            *group-name  = [ audio-cd ]
+        ]]
+"
+
+BUGS_TO="bruners@gmail.com"
+AT_M4DIR=( /usr/share/xfce4/dev-tools/m4macros )
+

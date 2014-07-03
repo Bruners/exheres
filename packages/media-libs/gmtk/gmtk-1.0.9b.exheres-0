@@ -1,8 +1,0 @@
-# Copyright 2013, 2014 Lasse Brun <bruners@gmail.com>
-# Distributed under the terms of the GNU General Public License v2
-
-require gmtk
-
-SLOT="0"
-PLATFORMS="~amd64"
-

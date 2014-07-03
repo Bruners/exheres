@@ -1,8 +1,9 @@
 # Copyright 2013, 2014 Lasse Brun <bruners@gmail.com>
 # Distributed under the terms of the GNU General Public License v2
 
-require googlecode [ suffix=tar.gz ] gsettings
+require gsettings
 
+HOMEPAGE="http://code.google.com/p/${PN}"
 SUMMARY="Library for gnome-mplayer and gecko-mediaplayer"
 DESCRIPTION="
 gnome-mplayer toolkit, gmtk includes:
@@ -10,6 +11,7 @@ libgmlib - a set of functions that support non-graphical operations
 libgmtk - a set of gtk widgets to use with gnome-mplayer
 "
 
+DOWNLOADS="http://${PN}.googlecode.com/svn/packages/${MY_PNV:-$PNV}.tar.gz"
 LICENCES="GPL-2"
 MYOPTIONS="
     alsa

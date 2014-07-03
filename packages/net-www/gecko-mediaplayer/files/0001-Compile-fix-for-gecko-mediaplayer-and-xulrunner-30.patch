@@ -1,0 +1,29 @@
+From a4b9c690f844b2ca2d47a807b0ba9ddf538dc0a6 Mon Sep 17 00:00:00 2001
+From: Lasse Brun <bruners@gmail.com>
+Date: Thu, 3 Jul 2014 04:23:20 +0200
+Subject: [PATCH] Compile fix for gecko-mediaplayer and xulrunner >=30
+
+Source: Upstream
+Reason: Fix compiling with xulrunner >=30
+Upstream: Applied in svn
+---
+ src/npupp.h | 3 +++
+ 1 file changed, 3 insertions(+)
+
+diff --git a/src/npupp.h b/src/npupp.h
+index 6cbd531..8f63e74 100644
+--- a/src/npupp.h
++++ b/src/npupp.h
+@@ -63,6 +63,9 @@
+ 
+ #include "npruntime.h"
+ 
++#ifndef NP_LOADDS
++#define NP_LOADDS
++#endif
+ 
+ /******************************************************************************************
+    plug-in function table macros
+-- 
+2.0.1
+

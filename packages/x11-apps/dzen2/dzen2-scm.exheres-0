@@ -52,9 +52,9 @@ src_prepare() {
 
     # Set up the configuration
     edo sed -e "s:^\(VERSION =\).*:\1 ${PV}:" \
-            -e "s:^\(PREFIX =\).*:\1 /usr:" \
-            -e "s:^\(CFLAGS =\).*:\1 -Wall -DVERSION=\\\\\"\${VERSION}\\\\\" ${flags[*]} $(pkg-config --cflags ${libs[@]}) ${CFLAGS}:" \
-            -e "s:^\(LDFLAGS =\).*:\1 $(pkg-config --libs ${libs[@]}) ${LDFLAGS}:" \
+            -e "s:^\(PREFIX =\).*:\1 /usr/$(exhost --target):" \
+            -e "s:^\(CFLAGS =\).*:\1 -Wall -DVERSION=\\\\\"\${VERSION}\\\\\" ${flags[*]} $(${PKG_CONFIG} --cflags ${libs[@]}) ${CFLAGS}:" \
+            -e "s:^\(LDFLAGS =\).*:\1 $(${PKG_CONFIG} --libs ${libs[@]}) ${LDFLAGS}:" \
             -e "s:^\(CC =\).*:\1 ${CC}:" \
             -i config.mk gadgets/config.mk
 

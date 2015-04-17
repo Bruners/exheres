@@ -1,0 +1,32 @@
+Upstream: yes
+From 56a47343c2c43e21cb756f7b67b43c74c78b0e98 Mon Sep 17 00:00:00 2001
+From: Jakob Nixdorf <flocke@shadowice.org>
+Date: Fri, 17 Apr 2015 17:37:03 +0200
+Subject: [PATCH] Set the pkg-config command as variable during make
+
+Allows the location of the pkg-config command to be specified during
+make using the PKG_CONFIG parameter.
+---
+ Makefile.common | 6 ++++--
+ 1 file changed, 4 insertions(+), 2 deletions(-)
+
+diff --git a/Makefile.common b/Makefile.common
+index 1b165ce..14d4d77 100644
+--- a/Makefile.common
++++ b/Makefile.common
+@@ -16,8 +16,10 @@ endif
+ endif
+ 
+ CC ?= gcc
+-LIBS = $(shell pkg-config --libs gtk+-2.0 gdk-pixbuf-2.0 gdk-pixbuf-xlib-2.0 x11) 
+-INCS = $(shell pkg-config --cflags gtk+-2.0 gdk-pixbuf-2.0 gdk-pixbuf-xlib-2.0 x11)
++PKG_CONFIG ?= pkg-config
++
++LIBS = $(shell $(PKG_CONFIG) --libs gtk+-2.0 gdk-pixbuf-2.0 gdk-pixbuf-xlib-2.0 x11)
++INCS = $(shell $(PKG_CONFIG) --cflags gtk+-2.0 gdk-pixbuf-2.0 gdk-pixbuf-xlib-2.0 x11)
+ CFLAGS ?= -O2 -Wall
+ ifneq (,$(DEVEL))
+ CFLAGS ?= -g -Wall 
+-- 
+2.3.3
+

@@ -15,12 +15,25 @@ BUGS_TO="bruners@gmail.com"
 MYOPTIONS=""
 DEPENDENCIES="
     build:
-        dev-util/pkg-config
+        virtual/pkg-config
     build+run:
         x11-libs/gdk-pixbuf:2.0
         x11-libs/gtk+:2
         x11-libs/libX11
 "
+
+# Don't strip the binaries (it doesn't find the strip command and paludis can handle this)
+DEFAULT_SRC_COMPILE_PARAMS=( DEVEL=true )
+
+if ever is_scm; then
+    # Uses a self-written configure script that hates everything except prefix
+    DEFAULT_SRC_CONFIGURE_PARAMS=( --hates={build,host,bindir,sbindir,libdir,datadir,datarootdir,docdir,infodir,mandir,sysconfdir,localstatedir,disable-dependency-tracking,disable-silent-rules,enable-fast-install} )
+else
+    DEFAULT_SRC_PREPARE_PATCHES=(
+        "${FILES}/0001-Replace-fixed-library-path-with-pkg-config-parameter.patch"
+        "${FILES}/0002-Set-the-pkg-config-command-as-variable-during-make.patch"
+    )
+fi
 
 src_install() {
     dobin "${WORK}"/trayer

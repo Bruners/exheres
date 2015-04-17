@@ -1,0 +1,28 @@
+Upstream: yes
+From 548165afdf93518c85134d36540d01659ac8589c Mon Sep 17 00:00:00 2001
+From: sargon <sargon@lightfree>
+Date: Sun, 19 Oct 2014 15:02:00 +0200
+Subject: [PATCH] Replace fixed library path with pkg-config parameter
+
+---
+ Makefile.common | 4 ++--
+ 1 file changed, 2 insertions(+), 2 deletions(-)
+
+diff --git a/Makefile.common b/Makefile.common
+index 23ccdd9..1b165ce 100644
+--- a/Makefile.common
++++ b/Makefile.common
+@@ -16,8 +16,8 @@ endif
+ endif
+ 
+ CC ?= gcc
+-LIBS = $(shell pkg-config --libs gtk+-2.0 gdk-pixbuf-2.0 gdk-pixbuf-xlib-2.0) -lX11 -L/usr/X11R6/lib  -lXmu
+-INCS = $(shell pkg-config --cflags gtk+-2.0 gdk-pixbuf-2.0 gdk-pixbuf-xlib-2.0)
++LIBS = $(shell pkg-config --libs gtk+-2.0 gdk-pixbuf-2.0 gdk-pixbuf-xlib-2.0 x11) 
++INCS = $(shell pkg-config --cflags gtk+-2.0 gdk-pixbuf-2.0 gdk-pixbuf-xlib-2.0 x11)
+ CFLAGS ?= -O2 -Wall
+ ifneq (,$(DEVEL))
+ CFLAGS ?= -g -Wall 
+-- 
+2.3.3
+

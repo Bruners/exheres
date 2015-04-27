@@ -38,6 +38,12 @@ DEPENDENCIES="
 
 BUGS_TO="bruners@gmail.com"
 
+src_prepare() {
+    edo sed -e "s/pkg-config/$(exhost --tool-prefix)pkg-config/g" -i Makefile
+
+    default
+}
+
 src_compile() {
     config=(
         NO_REGEX_PCRE=false
@@ -46,7 +52,7 @@ src_compile() {
     option dbus || config+=( NO_DBUS=true )
     option libconfig || config+=( NO_LIBCONFIG=true )
     option opengl || config+=( NO_VSYNC_OPENGL=true NO_VSYNC_DRM=true )
-    option xinerama || config+( NO_XINERAMA=true )
+    option xinerama || config+=( NO_XINERAMA=true )
 
     emake ${config[*]} ${PN}
 

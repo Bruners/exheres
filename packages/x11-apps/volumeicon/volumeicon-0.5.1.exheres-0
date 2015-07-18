@@ -1,7 +1,7 @@
 # Copyright 2013 Lasse Brun <bruners@gmail.com>
 # Distributed under the terms of the GNU General Public License v2
 
-require autotools [ supported_autoconf=[ 2.5 2.1 ] supported_automake=[ 1.13 1.12 1.11 ] ]
+require autotools [ supported_autoconf=[ 2.5 2.1 ] supported_automake=[ 1.15 1.13 1.12 1.11 ] ]
 
 SUMMARY="Volume Icon aims to be a lightweight volume control that sits in your systray"
 MY_URL="http://softwarebakery.com/maato/"
@@ -26,8 +26,8 @@ DEPENDENCIES="
         virtual/pkg-config[>=0.9.0]
     build+run:
         dev-libs/keybinder:*
-        x11-libs/gtk+:3
-
+        x11-libs/gtk+:3[>=3.0]
+        x11-libs/libX11
         alsa? ( sys-sound/alsa-lib )
         libnotify? ( x11-libs/libnotify[>=0.5.0] )
         oss? ( sys-sound/oss )
@@ -36,8 +36,10 @@ DEPENDENCIES="
 BUGS_TO="bruners@gmail.com"
 
 src_prepare() {
-    default
     edo intltoolize --force --automake
+    edo sed -e  "s#/usr/lib#/usr/$(exhost --target)/lib#g"  \
+            -i  configure.ac
+    autotools_src_prepare
 }
 
 src_configure() {

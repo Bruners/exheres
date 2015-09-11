@@ -29,21 +29,37 @@ DEFAULT_SRC_PREPARE_PATCHES=(
     "${FILES}"/03-${PN}_64bit.patch
 )
 
+DEFAULT_SRC_COMPILE_PARAMS=(
+    AR="${AR}"
+    AS="${AS}"
+    CC="${CC}"
+    CPP="${CPP}"
+    LD="${CC}"
+    NM="${NM}"
+    RANLIB="${RANLIB}"
+)
+
 src_test() {
-    emake addtst
+    emake "${DEFAULT_SRC_COMPILE_PARAMS[@]}" addtst
 }
 
 src_install() {
-    dodir /usr/bin /usr/${LIBDIR} /usr/include/gsm /usr/include/libgsm /usr/share/man/man{1,3}
+    dodir \
+        /usr/$(exhost --target)/bin \
+        /usr/$(exhost --target)/lib \
+        /usr/$(exhost --target)/include/gsm \
+        /usr/$(exhost --target)/include/libgsm \
+        /usr/share/man/man{1,3}
 
-    emake INSTALL_ROOT="${IMAGE}"/usr \
-        GSM_INSTALL_LIB="${IMAGE}"/usr/${LIBDIR} \
-        GSM_INSTALL_INC="${IMAGE}"/usr/include/gsm \
+    emake "${DEFAULT_SRC_COMPILE_PARAMS[@]}" \
+        INSTALL_ROOT="${IMAGE}"/usr/$(exhost --target) \
+        GSM_INSTALL_LIB="${IMAGE}"/usr/$(exhost --target)/lib \
+        GSM_INSTALL_INC="${IMAGE}"/usr/$(exhost --target)/include/gsm \
         GSM_INSTALL_MAN="${IMAGE}"/usr/share/man/man3 \
         TOAST_INSTALL_MAN="${IMAGE}"/usr/share/man/man1 \
         install
 
-    dosym ../gsm/gsm.h /usr/include/libgsm/gsm.h
+    dosym ../gsm/gsm.h /usr/$(exhost --target)/include/libgsm/gsm.h
 
     emagicdocs
 }

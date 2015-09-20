@@ -1,0 +1,25 @@
+Title: major configuration changes for net-www/profile-sync-daemon version 6.x
+Author: Jakob Nixdorf <flocke@shadowice.org>
+Content-Type: text/plain
+Posted: 2015-09-20
+Revision: 1
+News-Item-Format: 1.0
+Display-If-Installed: net-www/profile-sync-daemon
+
+With the bump to version 6.x the configuration of profile-sync-daemon underwent
+major changes:
+
+  1. A global systemd service is no longer used. Instead psd.service has to be
+     started by each user separately as a user service (systemctl --user start
+     psd.service).
+  2. The global configuration file /etc/psd.conf is no longer used. Individual
+     per-user configurations located at $HOME/.config/psd/psd.conf will be
+     created on the first launch.
+  3. Users wanting to use overlayfs MUST have sudo access (nopasswd) to the
+     helper script /usr/host/bin/psd-overlay-helper.
+
+Before upgrading to the new version the old, system-wide psd.service should be
+stopped and disabled (since it will be removed). After the upgrade the old
+configuration file /etc/psd.conf has to be removed or the user service will
+fail to start.
+

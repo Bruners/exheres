@@ -28,5 +28,5 @@ UPSTREAM_DOCUMENTATION="
     https://wiki.archlinux.org/index.php/Profile-sync-daemon [[ lang = en description = [ Arch Linux Wiki ] ]]
 "
 
-DEFAULT_SRC_INSTALL_PARAMS=( BINDIR="/usr/$(exhost --target)/bin" INITDIR_SYSTEMD="/usr/$(exhost --target)/lib/systemd/system" install-systemd-all )
+DEFAULT_SRC_INSTALL_PARAMS=( BINDIR="/usr/$(exhost --target)/bin" INITDIR_SYSTEMD="/usr/$(exhost --target)/lib/systemd/user" )
 

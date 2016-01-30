@@ -9,7 +9,7 @@ DOWNLOADS="${HOMEPAGE}/downloads/${PNV}.tar.bz2"
 LICENCES="
     GPL-3
     LGPL-2.1
-    zlib
+    ZLIB
 "
 SLOT="0"
 PLATFORMS="

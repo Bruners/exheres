@@ -17,7 +17,6 @@
 + mangler - _An open source VOIP client capable of connecting to Ventrilo 3.x servers_
 
 **net-www/**
-+ gecko-mediaplayer - _A browser plugin to play media with gnome-mplayer_
 + profile-sync-daemon - _Symlinks and syncs browser profile dirs to RAM speeding-up browsers_
 
 **sys-sound/**

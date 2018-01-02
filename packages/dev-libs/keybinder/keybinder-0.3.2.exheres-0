@@ -1,28 +1,30 @@
 # Copyright 2013 Lasse Brun <bruners@gmail.com>
+# Copyright 2018 Rasmus Thomsen <Rasmus.thomsen@protonmail.com>
 # Distributed under the terms of the GNU General Public License v2
 
 SLOT="3.0"
-require github [ user=engla tag=${PN}-${SLOT}-v${PV} ] autotools [ supported_autoconf=[ 2.5 ] supported_automake=[ 1.15 1.13 ] ]
+require github [ user=kupferlauncher release=${PN}-${SLOT}-v${PV} pnv=${PN}-${SLOT}-${PV} suffix=tar.gz ]
 
 SUMMARY="Library for registering global keyboard shortcuts"
 DESCRIPTION="Keybinder works with GTK-based applications using the X Window System"
 
 LICENCES="GPL-2"
 PLATFORMS="~amd64"
-MYOPTIONS="gtk-doc gobject-introspection python"
+MYOPTIONS="gtk-doc gobject-introspection"
 
 DEPENDENCIES="
     build:
         dev-util/intltool
-        virtual/pkg-config
         sys-devel/gettext
+        virtual/pkg-config[>=0.9.0]
     build+run:
         dev-libs/glib:2[>=2.30]
         x11-libs/gtk+:3[>=3][gobject-introspection?]
-        gtk-doc? ( dev-doc/gtk-doc[>=0.14] )
-        gobject-introspection? ( gnome-desktop/gobject-introspection[>=1.31.1] )
-    run:
-        python? ( gnome-bindings/pygobject:2 )
+        x11-libs/libX11
+        x11-libs/libXext
+        x11-libs/libXrender
+        gobject-introspection? ( gnome-desktop/gobject-introspection:1[>=0.67] )
+        gtk-doc? ( dev-doc/gtk-doc[>=1.14] )
 "
 
 BUGS_TO="bruners@gmail.com"
@@ -31,11 +33,4 @@ DEFAULT_SRC_CONFIGURE_OPTION_ENABLES=(
     'gobject-introspection introspection'
     'gtk-doc'
 )
-
-src_prepare() {
-    edo sed -e "s:AC_CHECK_PROG(HAVE_PKGCONFIG:AC_CHECK_TOOL(HAVE_PKGCONFIG:" \
-        -i configure.ac
-    edo gtkdocize
-    autotools_src_prepare
-}
 

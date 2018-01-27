@@ -1,0 +1,45 @@
+# Copyright 2013, 2014 Lasse Brun <bruners@gmail.com>
+# Copyright 2018 Rasmus Thomsen <Rasmus.thomsen@protonmail.com>
+# Distributed under the terms of the GNU General Public License v2
+
+require github [ user=andrewsomething tag=${PV} ]
+require setup-py [ import=distutils test=nose blacklist=2 ]
+
+SUMMARY="Download Google webfonts for off-line use"
+DESCRIPTION="
+TypeCatcher allows you to search, browse, and download Google webfonts for off-line use.
+You can preview fonts with adjustable size and text.
+"
+
+LICENCES="GPL-3"
+SLOT="0"
+PLATFORMS="~amd64"
+
+MYOPTIONS=""
+
+DEPENDENCIES="
+    build:
+        dev-python/distutils-extra[>=2.18][python_abis:*(-)?]
+    build+run:
+        gnome-bindings/pygobject:3[python_abis:*(-)?]
+    run:
+        net-libs/webkit:4.0[gobject-introspection]
+        x11-libs/gtk+:3[gobject-introspection]
+    test:
+        dev-python/pyflakes[python_abis:*(-)?]
+    suggestion:
+        gnome-desktop/yelp [[ description = [ required to access typecatcher's docs ] ]]
+"
+
+BUGS_TO="bruners@gmail.com"
+
+# Require network access
+RESTRICT="test"
+
+prepare_one_multibuild() {
+    setup-py_prepare_one_multibuild
+
+    # We don't call it pyflakes3 but just pyflakes
+    edo sed -e "s:pyflakes3:pyflakes:" -i tests/test_pyflake.py
+}
+

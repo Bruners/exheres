@@ -16,7 +16,7 @@ DEPENDENCIES="
     build:
         app-doc/asciidoc
         virtual/pkg-config
-        x11-proto/xproto
+        x11-proto/xorgproto
     build+run:
         dev-libs/pcre[>=8.10]
         x11-libs/libX11

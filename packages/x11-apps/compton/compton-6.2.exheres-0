@@ -3,6 +3,5 @@
 
 require compton
 
-SLOT="0"
 PLATFORMS="~amd64"
 

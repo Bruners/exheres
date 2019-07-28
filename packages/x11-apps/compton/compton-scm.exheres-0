@@ -1,19 +1,14 @@
 # Copyright 2013, 2014 Lasse Brun <bruners@gmail.com>
 # Distributed under the terms of the GNU General Public License v2
 
-# Last checked: 5a034ea169cbbf04808061781f96f46a0e240eb3 (2019-06-23)
+# Last checked: 5da71e6bfda5ed0f81a254efb6399f8121d1e506 (2019-07-27)
 GITHUB_BRANCH="next"
-
-SCM_EXTERNAL_REFS="subprojects/test.h:test_h"
-SCM_SECONDARY_REPOSITORIES="test_h"
-SCM_test_h_REPOSITORY="https://github.com/yshui/test.h"
 
 require compton
 
 PLATFORMS="~amd64"
 
-DEPENDENCIES="
-    build+run:
-        dev-libs/uthash
-"
+MESON_SRC_CONFIGURE_PARAMS+=(
+    "-Dwith_docs=true" # was build_docs in v7
+)
 

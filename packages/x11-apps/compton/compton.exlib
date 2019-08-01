@@ -1,7 +1,11 @@
 # Copyright 2013, 2014 Lasse Brun <bruners@gmail.com>
 # Distributed under the terms of the GNU General Public License v2
 
-require github [ user=yshui tag=v${PV} ]
+SCM_EXTERNAL_REFS="subprojects/test.h:test_h"
+SCM_SECONDARY_REPOSITORIES="test_h"
+SCM_test_h_REPOSITORY="https://github.com/yshui/test.h"
+
+require github [ force_git_clone=true user=yshui tag=v${PV} ]
 require meson gtk-icon-cache
 
 SUMMARY="Compton is a X compositing manager, forked of xcompmgr-dana and xcompgmr"
@@ -16,6 +20,7 @@ MYOPTIONS="
 DEPENDENCIES="
     build:
         app-doc/asciidoc
+        dev-libs/uthash
         virtual/pkg-config
         x11-proto/xorgproto
     build+run:
@@ -37,35 +42,31 @@ DEPENDENCIES="
             x11-dri/mesa
         )
     run:
+        dev-lang/python:*[>3.5] [[ note = [ bin/compton-convgen.py ] ]]
         x11-apps/xprop
         x11-apps/xwininfo
 "
 
 BUGS_TO="bruners@gmail.com"
 
-DEFAULT_SRC_PREPARE_PATCHES=(
-    "$FILES/scripts-destdir.patch"
-)
-
 DEFAULT_SRC_INSTALL_EXTRA_DOCS=(
     "${PN}.sample.conf"
 )
 
 MESON_SRC_CONFIGURE_PARAMS=(
-    "-Dbuild_docs=true"
     "-Dregex=true"
+    "-Dunittest=true"
 )
 
 MESON_SRC_CONFIGURE_OPTION_SWITCHES=(
     "dbus"
     "libconfig config_file"
     "opengl"
-    "opengl vsync_drm"
 )
 
 src_install() {
     meson_src_install
-    option dbus && dodoc dbus-examples/cdbus-driver.sh
+    option dbus && dodoc -r dbus-examples
 }
 
 pkg_postinst() {
@@ -73,6 +74,6 @@ pkg_postinst() {
     elog "Sample configuration/tools for ${PN} can be found in /usr/share/doc/${PNV}"
     elog "compton.sample.conf - Sourced from XDG directories \$XDG_CONFIG_HOME/${PN}.conf \$HOME/.${PN}.conf"
     option dbus &&
-        elog "cdbus-driver.sh - A script to control ${PN} via dbus"
+        elog "dbus-examples - scripts to control ${PN} via dbus"
 }
 

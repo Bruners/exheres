@@ -27,7 +27,6 @@
 + trayer-srg - _trayer-srg is a lightweight GTK2-based systray for UNIX desktop_
 + typecatcher - _TypeCatcher allows you to search, browse, and download Google webfonts for off-line use_
 + gsimplecal - _A simple calendar gtk+ app written in C++_
-+ lightdm - _LightDM is a cross-desktop display manager aiming to be the standard DM for X.org X Server_
 + lightdm-gtk-greeter - _Reference GTK+ greeter for LightDM_
 + volumeicon - _Volume Icon aims to be a lightweight volume control that sits in your systray_
 

@@ -1,11 +1,7 @@
 # Copyright 2013, 2014 Lasse Brun <bruners@gmail.com>
 # Distributed under the terms of the GNU General Public License v2
 
-SCM_EXTERNAL_REFS="subprojects/test.h:test_h"
-SCM_SECONDARY_REPOSITORIES="test_h"
-SCM_test_h_REPOSITORY="https://github.com/yshui/test.h"
-
-require github [ force_git_clone=true user=yshui tag=v${PV} ]
+require github [ user=yshui tag=v${PV} ]
 require meson gtk-icon-cache
 
 SUMMARY="Compton is a X compositing manager, forked of xcompmgr-dana and xcompgmr"
@@ -54,10 +50,8 @@ DEFAULT_SRC_INSTALL_EXTRA_DOCS=(
 )
 
 MESON_SRC_CONFIGURE_PARAMS=(
-    "-Dregex=true"
     "-Dunittest=true"
 )
-
 MESON_SRC_CONFIGURE_OPTION_SWITCHES=(
     "dbus"
     "libconfig config_file"

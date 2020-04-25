@@ -1,10 +1,13 @@
 # Copyright 2013, 2014 Lasse Brun <bruners@gmail.com>
 # Distributed under the terms of the GNU General Public License v2
 
+MY_PN=picom
 require github [ user=yshui tag=v${PV} ]
 require meson gtk-icon-cache
 
-SUMMARY="Compton is a X compositing manager, forked of xcompmgr-dana and xcompgmr"
+export_exlib_phases src_prepare src_install pkg_postinst
+
+SUMMARY="Picom (former compton) is a X compositing manager, forked of xcompmgr-dana and xcompgmr"
 LICENCES="MIT"
 SLOT="0"
 MYOPTIONS="
@@ -38,7 +41,6 @@ DEPENDENCIES="
             x11-dri/mesa
         )
     run:
-        dev-lang/python:*[>3.5] [[ note = [ bin/compton-convgen.py ] ]]
         x11-apps/xprop
         x11-apps/xwininfo
 "
@@ -46,27 +48,37 @@ DEPENDENCIES="
 BUGS_TO="bruners@gmail.com"
 
 DEFAULT_SRC_INSTALL_EXTRA_DOCS=(
-    "${PN}.sample.conf"
+    "${MY_PN}.sample.conf"
 )
 
 MESON_SRC_CONFIGURE_PARAMS=(
     "-Dunittest=true"
+    "-Dwith_docs=true"
 )
+
 MESON_SRC_CONFIGURE_OPTION_SWITCHES=(
     "dbus"
     "libconfig config_file"
     "opengl"
 )
 
-src_install() {
+compton_src_prepare() {
+    meson_src_prepare
+    edo sed \
+        -e "2,$ s|/bin|/$(exhost --target)/bin|" \
+        -i meson/install.sh
+}
+
+compton_src_install() {
     meson_src_install
     option dbus && dodoc -r dbus-examples
 }
 
-pkg_postinst() {
+compton_pkg_postinst() {
     gtk-icon-cache_pkg_postinst
-    elog "Sample configuration/tools for ${PN} can be found in /usr/share/doc/${PNV}"
-    elog "compton.sample.conf - Sourced from XDG directories \$XDG_CONFIG_HOME/${PN}.conf \$HOME/.${PN}.conf"
+    ewarn "Project has been renamed to ${MY_PN}, follow migration process from README.md"
+    elog "Sample configuration/tools for ${MY_PN} can be found in /usr/share/doc/${PNV}"
+    elog "${MY_PN}.sample.conf - Sourced from XDG directories \$XDG_CONFIG_HOME/${PN}.conf \$HOME/.${PN}.conf"
     option dbus &&
         elog "dbus-examples - scripts to control ${PN} via dbus"
 }

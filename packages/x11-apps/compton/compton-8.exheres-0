@@ -5,7 +5,3 @@ require compton
 
 PLATFORMS="~amd64"
 
-MESON_SRC_CONFIGURE_PARAMS+=(
-    "-Dbuild_docs=true"  # with_docs in "next" branch
-)
-

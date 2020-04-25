@@ -1,14 +1,10 @@
 # Copyright 2013, 2014 Lasse Brun <bruners@gmail.com>
 # Distributed under the terms of the GNU General Public License v2
 
-# Last checked: 5da71e6bfda5ed0f81a254efb6399f8121d1e506 (2019-07-27)
+# Last checked: 0b377537ec9c3f6faaa13878701d8d0b2ee62d0c (2020-04-24)
 GITHUB_BRANCH="next"
 
 require compton
 
 PLATFORMS="~amd64"
-
-MESON_SRC_CONFIGURE_PARAMS+=(
-    "-Dwith_docs=true" # was build_docs in v7
-)
 

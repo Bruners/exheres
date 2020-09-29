@@ -41,8 +41,10 @@ DEPENDENCIES="
             x11-dri/mesa
         )
     run:
-        x11-apps/xprop
-        x11-apps/xwininfo
+        (
+            x11-apps/xprop
+            x11-apps/xwininfo
+        ) [[ note = [ used by picom-trans script ] ]]
 "
 
 BUGS_TO="bruners@gmail.com"

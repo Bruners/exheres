@@ -6,9 +6,6 @@
 **dev-libs/**
 + keybinder - _Keybinder works with GTK-based applications using the X Window System_
 
-**media/**
-+ bino - _Bino is a video player with support for stereoscopic 3D and multi display video_
-
 **media-libs/**
 + gmtk - _Library for gnome-mplayer and gecko-mediaplayer_
 + gsm - _GSM 06.10 lossy speech compression library_
